@@ -1,5 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">playing2learn</string>
+
+
     <string name="login_usuario">usuario</string>
     <string name="login_password">contraseña</string>
     <string name="btn_login">Iniciar Sesion</string>
