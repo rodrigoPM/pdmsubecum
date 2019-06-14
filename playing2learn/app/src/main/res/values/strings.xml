@@ -3,4 +3,7 @@
     <string name="login_usuario">usuario</string>
     <string name="login_password">contraseña</string>
     <string name="btn_login">Iniciar Sesion</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

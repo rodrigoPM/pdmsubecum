@@ -1,9 +1,11 @@
 package com.pdm.sube.cum.leccion;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.pdm.sube.cum.R;
+import com.pdm.sube.cum.ejercicio.Ejercicio;
 
 public class menuLeccionActivity extends AppCompatActivity implements LeccionFragment.OnListFragmentInteractionListener {
 
@@ -15,6 +17,6 @@ public class menuLeccionActivity extends AppCompatActivity implements LeccionFra
 
     @Override
     public void onListFragmentInteraction(LeccionItem item) {
-
+        startActivity(new Intent(this, Ejercicio.class));
     }
 }
