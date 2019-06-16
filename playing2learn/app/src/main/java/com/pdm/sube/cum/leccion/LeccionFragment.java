@@ -10,7 +10,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.pdm.sube.cum.DB.models.Examen;
+import com.pdm.sube.cum.DB.models.Examen_Table;
+import com.pdm.sube.cum.DB.models.Leccion;
+import com.pdm.sube.cum.DB.models.Leccion_Table;
+import com.pdm.sube.cum.DB.models.Seccion;
+import com.pdm.sube.cum.DB.models.Seccion_Table;
 import com.pdm.sube.cum.R;
+import com.raizlabs.android.dbflow.sql.language.SQLite;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +36,7 @@ public class LeccionFragment extends Fragment {
     private int mColumnCount = 2;
     private OnListFragmentInteractionListener mListener;
 
-    private List<LeccionItem> leccionItems;
+    private List<Leccion> leccionItems;
     int id;
 
     /**
@@ -72,25 +79,7 @@ public class LeccionFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            leccionItems = new ArrayList<>();
-            switch (id){
-                case 1:
-                    leccionItems.add(new LeccionItem(1,"vocales",R.drawable.vocales));
-                    leccionItems.add(new LeccionItem(2,"abecedario",R.drawable.abecedario));
-                    leccionItems.add(new LeccionItem(3,"examen",R.drawable.examen));
-                    break;
-                case 2:
-                    leccionItems.add(new LeccionItem(4,"0 - 9",R.drawable.numeros_0_10));
-                    leccionItems.add(new LeccionItem(5,"decenas",R.drawable.numeros_10_100));
-                    leccionItems.add(new LeccionItem(6,"examen",R.drawable.examen));
-                    break;
-                case 3:
-                    leccionItems.add(new LeccionItem(7,"mama",R.drawable.mama));
-                    leccionItems.add(new LeccionItem(8,"papa",R.drawable.papa));
-                    leccionItems.add(new LeccionItem(9,"examen",R.drawable.examen));
-                    break;
-            }
-
+            leccionItems = SQLite.select().from(Leccion.class).where(Leccion_Table.seccion_id.is(id)).queryList();
 
             recyclerView.setAdapter(new MyLeccionRecyclerViewAdapter(leccionItems, mListener));
         }
@@ -127,6 +116,6 @@ public class LeccionFragment extends Fragment {
      */
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onListFragmentInteraction(LeccionItem item);
+        void onListFragmentInteraction(Leccion item);
     }
 }

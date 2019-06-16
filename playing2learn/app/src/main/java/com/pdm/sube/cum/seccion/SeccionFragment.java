@@ -11,7 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
+import com.pdm.sube.cum.DB.models.Seccion;
 import com.pdm.sube.cum.R;
+import com.raizlabs.android.dbflow.sql.language.SQLite;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +32,7 @@ public class SeccionFragment extends Fragment {
     private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
 
-    private List<SeccionItem> seccionItems;
+    private List<Seccion> seccionItems;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -73,11 +75,11 @@ public class SeccionFragment extends Fragment {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
 
-            seccionItems = new ArrayList<>();
-
-            seccionItems.add(new SeccionItem(1,"Alfabeto", R.drawable.alfabeto1));
-            seccionItems.add(new SeccionItem(2,"Numeros", R.drawable.numeros_general));
-            seccionItems.add(new SeccionItem(3,"mama y papa", R.drawable.mama_papa));
+            seccionItems = SQLite.select().from(Seccion.class).queryList();
+            //seccionItems = new ArrayList<>();
+            //seccionItems.add(new Seccion(1,"Alfabeto",R.drawable.alfabeto1,1,1,2));
+            //seccionItems.add(new Seccion(2,"Numeros",R.drawable.numeros_general,2,2,2));
+            //seccionItems.add(new Seccion(3,"Mama y Papa",R.drawable.mama_papa,3,3,2));
 
             recyclerView.setAdapter(new MySeccionRecyclerViewAdapter(seccionItems, mListener));
         }
@@ -114,6 +116,6 @@ public class SeccionFragment extends Fragment {
      */
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onListFragmentInteraction(SeccionItem item);
+        void onListFragmentInteraction(Seccion item);
     }
 }
