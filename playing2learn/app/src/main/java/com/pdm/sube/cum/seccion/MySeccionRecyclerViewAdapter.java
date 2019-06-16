@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.pdm.sube.cum.DB.models.Seccion;
 import com.pdm.sube.cum.R;
 import com.pdm.sube.cum.seccion.SeccionFragment.OnListFragmentInteractionListener;
 
@@ -15,10 +16,10 @@ import java.util.List;
 
 public class MySeccionRecyclerViewAdapter extends RecyclerView.Adapter<MySeccionRecyclerViewAdapter.ViewHolder> {
 
-    private final List<SeccionItem> mValues;
+    private final List<Seccion> mValues;
     private final OnListFragmentInteractionListener mListener;
 
-    public MySeccionRecyclerViewAdapter(List<SeccionItem> items, OnListFragmentInteractionListener listener) {
+    public MySeccionRecyclerViewAdapter(List<Seccion> items, OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
     }
@@ -58,7 +59,7 @@ public class MySeccionRecyclerViewAdapter extends RecyclerView.Adapter<MySeccion
         public final TextView nombre_seccion;
         public final ImageView imagen_seccion;
 
-        public SeccionItem mItem;
+        public Seccion mItem;
 
         public ViewHolder(View view) {
             super(view);

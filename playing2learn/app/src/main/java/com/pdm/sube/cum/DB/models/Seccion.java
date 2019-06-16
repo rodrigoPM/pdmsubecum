@@ -1,8 +1,8 @@
 package com.pdm.sube.cum.DB.models;
 
+
 import com.pdm.sube.cum.DB.MyDB;
 import com.raizlabs.android.dbflow.annotation.Column;
-import com.raizlabs.android.dbflow.annotation.ForeignKey;
 import com.raizlabs.android.dbflow.annotation.PrimaryKey;
 import com.raizlabs.android.dbflow.annotation.Table;
 import com.raizlabs.android.dbflow.structure.BaseModel;
@@ -26,20 +26,15 @@ public class Seccion extends BaseModel {
     int correlativo;
 
     @Column
-    boolean estado;
+    int total_lecciones;
 
-    @Column
-    @ForeignKey(saveForeignKeyModel = false)
-    Menu menu;
-
-    public Seccion(int id, String nombre, int imagen, int nivel, int correlativo, boolean estado, Menu menu) {
+    public Seccion(int id, String nombre, int imagen, int nivel, int correlativo, int total_lecciones) {
         this.id = id;
         this.nombre = nombre;
         this.imagen = imagen;
         this.nivel = nivel;
         this.correlativo = correlativo;
-        this.estado = estado;
-        this.menu = menu;
+        this.total_lecciones = total_lecciones;
     }
 
     public Seccion() {
@@ -85,19 +80,11 @@ public class Seccion extends BaseModel {
         this.correlativo = correlativo;
     }
 
-    public boolean isEstado() {
-        return estado;
+    public int getTotal_lecciones() {
+        return total_lecciones;
     }
 
-    public void setEstado(boolean estado) {
-        this.estado = estado;
-    }
-
-    public Menu getMenu() {
-        return menu;
-    }
-
-    public void setMenu(Menu menu) {
-        this.menu = menu;
+    public void setTotal_lecciones(int total_lecciones) {
+        this.total_lecciones = total_lecciones;
     }
 }

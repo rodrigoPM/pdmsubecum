@@ -1,5 +1,6 @@
 package com.pdm.sube.cum.DB.models;
 
+
 import com.pdm.sube.cum.DB.MyDB;
 import com.raizlabs.android.dbflow.annotation.Column;
 import com.raizlabs.android.dbflow.annotation.ForeignKey;
