@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         DetalleMenu detalleMenu = new DetalleMenu(1,0,0,usuario1,menu1);
         detalleMenu.save();
 
-        Seccion seccion1 = new Seccion(1,"Alfabeto",R.drawable.alfabeto,1,1,true,menu1);
+        Seccion seccion1 = new Seccion(1,"Alfabeto",R.drawable.alfabeto1,1,1,true,menu1);
         seccion1.save();
         Seccion seccion2 = new Seccion(2,"Numeros",R.drawable.numeros_general,2,2,false,menu1);
         seccion2.save();

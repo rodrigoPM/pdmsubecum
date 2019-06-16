@@ -75,19 +75,19 @@ public class LeccionFragment extends Fragment {
             leccionItems = new ArrayList<>();
             switch (id){
                 case 1:
-                    leccionItems.add(new LeccionItem(1,"vocales",R.drawable.logo));
-                    leccionItems.add(new LeccionItem(2,"abecedario",R.drawable.logo));
-                    leccionItems.add(new LeccionItem(3,"examen",R.drawable.logo));
+                    leccionItems.add(new LeccionItem(1,"vocales",R.drawable.vocales));
+                    leccionItems.add(new LeccionItem(2,"abecedario",R.drawable.abecedario));
+                    leccionItems.add(new LeccionItem(3,"examen",R.drawable.examen));
                     break;
                 case 2:
-                    leccionItems.add(new LeccionItem(4,"0 - 9",R.drawable.logo));
-                    leccionItems.add(new LeccionItem(5,"decenas",R.drawable.logo));
-                    leccionItems.add(new LeccionItem(6,"examen",R.drawable.logo));
+                    leccionItems.add(new LeccionItem(4,"0 - 9",R.drawable.numeros_0_10));
+                    leccionItems.add(new LeccionItem(5,"decenas",R.drawable.numeros_10_100));
+                    leccionItems.add(new LeccionItem(6,"examen",R.drawable.examen));
                     break;
                 case 3:
-                    leccionItems.add(new LeccionItem(7,"mama",R.drawable.logo));
-                    leccionItems.add(new LeccionItem(8,"papa",R.drawable.logo));
-                    leccionItems.add(new LeccionItem(9,"examen",R.drawable.logo));
+                    leccionItems.add(new LeccionItem(7,"mama",R.drawable.mama));
+                    leccionItems.add(new LeccionItem(8,"papa",R.drawable.papa));
+                    leccionItems.add(new LeccionItem(9,"examen",R.drawable.examen));
                     break;
             }
 

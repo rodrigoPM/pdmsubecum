@@ -75,9 +75,9 @@ public class SeccionFragment extends Fragment {
 
             seccionItems = new ArrayList<>();
 
-            seccionItems.add(new SeccionItem(1,"Alfabeto", R.drawable.fondo));
-            seccionItems.add(new SeccionItem(2,"Numeros", R.drawable.fondo));
-            seccionItems.add(new SeccionItem(3,"mama y papa", R.drawable.fondo));
+            seccionItems.add(new SeccionItem(1,"Alfabeto", R.drawable.alfabeto1));
+            seccionItems.add(new SeccionItem(2,"Numeros", R.drawable.numeros_general));
+            seccionItems.add(new SeccionItem(3,"mama y papa", R.drawable.mama_papa));
 
             recyclerView.setAdapter(new MySeccionRecyclerViewAdapter(seccionItems, mListener));
         }

@@ -63,7 +63,7 @@
     <ImageButton
         android:id="@+id/imageButton4"
         android:layout_width="194dp"
-        android:layout_height="233dp"
+        android:layout_height="224dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="64dp"
         android:layout_marginEnd="8dp"
@@ -75,7 +75,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/android" />
+        app:srcCompat="@drawable/logo_learn1" />
 
     <TextView
         android:id="@+id/txt_crear_cuenta"
