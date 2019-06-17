@@ -39,7 +39,7 @@ public class EstadisticasActivity extends AppCompatActivity {
 
         Estadisticas estadisticas3= SQLite.select().from(Estadisticas.class).where(Estadisticas_Table.seccion_id.eq(3)).and(Estadisticas_Table.usuario_id.eq(getIntent().getExtras().getInt("usuario"))).and(Estadisticas_Table.mes.eq(fecha.getMonth()+1)).querySingle();
 
-        try {
+        //try {
 
 
             ArrayList<BarEntry> barEntries = new ArrayList<>();
@@ -67,16 +67,16 @@ public class EstadisticasActivity extends AppCompatActivity {
             Description description =new Description();
             description.setText("secciones mas visitidas por este mes");
             barChart.setDescription(description);
-        }catch (Exception e){
+       // }catch (Exception e){
 
-            e.printStackTrace();
-
-
-            Toast.makeText(this,"no hay datos disponibles",Toast.LENGTH_SHORT).show();
+            //e.printStackTrace();
 
 
+          //  Toast.makeText(this,"no hay datos disponibles",Toast.LENGTH_SHORT).show();
 
-        }
+
+
+        //}
 
 
 
