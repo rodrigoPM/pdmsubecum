@@ -143,7 +143,7 @@ public class EjercicioContainer extends AppCompatActivity  implements View.OnCli
                 ocultarBoton();
                 getSupportFragmentManager()
                         .beginTransaction()
-                        .setCustomAnimations(android.R.anim.fade_out, android.R.anim.fade_in)
+                        .setTransition(android.R.anim.slide_out_right)
                         .replace(R.id.contenedorEjercicios, f)
                         .commit();
                 break;

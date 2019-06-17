@@ -13,14 +13,31 @@ import android.widget.TextView;
 
 import com.pdm.sube.cum.R;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import butterknife.Unbinder;
+
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Completado extends Fragment implements View.OnClickListener {
+public class Completado extends Fragment {
 
+
+
+    @BindView(R.id.txt_estado)
+    TextView txt_estado;
+    @BindView(R.id.btn_fin)
     Button btn_fin;
-    TextView txt_estado, txt_total, txt_aprobados, txt_reprobados;
+    @BindView(R.id.txt_total)
+    TextView txt_total;
+    @BindView(R.id.txt_aprobadas)
+    TextView txt_aprobados;
+    @BindView(R.id.txt_reprobadas)
+    TextView txt_reprobados;
+    @BindView(R.id.imagen_estado)
     ImageView imagen_estado;
+    Unbinder unbinder;
 
     public Completado() {
         // Required empty public constructor
@@ -31,52 +48,48 @@ public class Completado extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v =  inflater.inflate(R.layout.fragment_completado, container, false);
-        btn_fin = v.findViewById(R.id.btn_fin);
-        txt_estado = v.findViewById(R.id.txt_estado);
-        txt_total = v.findViewById(R.id.txt_total);
-        txt_aprobados = v.findViewById(R.id.txt_aprovadas);
-        txt_reprobados = v.findViewById(R.id.txt_reprobadas);
-        imagen_estado = v.findViewById(R.id.imagen_estado);
+        View v = inflater.inflate(R.layout.fragment_completado, container, false);
+        unbinder = ButterKnife.bind(this, v);
 
         txt_estado.setText("Resumen");
-        if(((EjercicioContainer)getActivity()).getTipo() == false){
-            txt_total.setText("Nota: "+((EjercicioContainer)getActivity()).getNota());
-            if(((EjercicioContainer)getActivity()).getNota() > 7.0){
+        if (((EjercicioContainer) getActivity()).getTipo() == false) {
+            txt_total.setText("Nota: " + ((EjercicioContainer) getActivity()).getNota());
+            if (((EjercicioContainer) getActivity()).getNota() > 7.0) {
                 imagen_estado.setImageResource(R.drawable.completado);
-            }else{
+            } else {
                 imagen_estado.setImageResource(R.drawable.mal_resultado);
             }
-        }else{
-            txt_total.setText("Total de Ejercicos: "+((EjercicioContainer)getActivity()).totalEjercicios());
-            if(((EjercicioContainer)getActivity()).getNota() > 7.0){
+        } else {
+            txt_total.setText("Total de Ejercicos: " + ((EjercicioContainer) getActivity()).totalEjercicios());
+            if (((EjercicioContainer) getActivity()).getNota() > 7.0) {
                 imagen_estado.setImageResource(R.drawable.completado_icono);
-            }else{
+            } else {
                 imagen_estado.setImageResource(R.drawable.practicar);
             }
         }
-        if(((EjercicioContainer)getActivity()).getNota() > 7.0){
-            MediaPlayer mp = MediaPlayer.create(getActivity(),R.raw.felicidades);
+        if (((EjercicioContainer) getActivity()).getNota() > 7.0) {
+            MediaPlayer mp = MediaPlayer.create(getActivity(), R.raw.felicidades);
             mp.start();
-        }else{
-            MediaPlayer mp = MediaPlayer.create(getActivity(),R.raw.sigue);
+        } else {
+            MediaPlayer mp = MediaPlayer.create(getActivity(), R.raw.sigue);
             mp.start();
         }
-        txt_aprobados.setText("Ejercicios Aprobados: "+((EjercicioContainer)getActivity()).getAprobadas());
-        txt_reprobados.setText("Ejercicios Aprobados: "+((EjercicioContainer)getActivity()).getReprobadas());
+        txt_aprobados.setText("Ejercicios Aprobados: " + ((EjercicioContainer) getActivity()).getAprobadas());
+        txt_reprobados.setText("Ejercicios Reprobados: " + ((EjercicioContainer) getActivity()).getReprobadas());
 
 
-        btn_fin.setOnClickListener(this);
-        return  v;
+        return v;
     }
 
 
     @Override
-    public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.btn_fin:
-                ((EjercicioContainer)getActivity()).salir();
-                break;
-        }
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
+    }
+
+    @OnClick(R.id.btn_fin)
+    public void onViewClicked() {
+        ((EjercicioContainer) getActivity()).salir();
     }
 }
