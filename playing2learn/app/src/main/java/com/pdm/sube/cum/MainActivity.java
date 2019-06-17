@@ -57,9 +57,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         Intent intent;
-        Usuario user = null;
+
         switch (v.getId()) {
             case R.id.login_btn_login:
+
                 try {
                     user = SQLite.select().from(Usuario.class).where(Usuario_Table.usuario.eq(this.edt_usuario.getText().toString())).queryList().get(0);
                 }catch (Exception e){
@@ -74,6 +75,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         Toast.makeText(this, "Password incorrecto" , Toast.LENGTH_SHORT).show();
                     }
                 }else{
+
                    Toast.makeText(this, "El Usuario no existe", Toast.LENGTH_SHORT).show();
                }
 
