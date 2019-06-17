@@ -1,6 +1,7 @@
 package com.pdm.sube.cum.ejercicio;
 
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -53,6 +54,13 @@ public class Completado extends Fragment implements View.OnClickListener {
             }else{
                 imagen_estado.setImageResource(R.drawable.practicar);
             }
+        }
+        if(((EjercicioContainer)getActivity()).getNota() > 7.0){
+            MediaPlayer mp = MediaPlayer.create(getActivity(),R.raw.felicidades);
+            mp.start();
+        }else{
+            MediaPlayer mp = MediaPlayer.create(getActivity(),R.raw.sigue);
+            mp.start();
         }
         txt_aprobados.setText("Ejercicios Aprobados: "+((EjercicioContainer)getActivity()).getAprobadas());
         txt_reprobados.setText("Ejercicios Aprobados: "+((EjercicioContainer)getActivity()).getReprobadas());

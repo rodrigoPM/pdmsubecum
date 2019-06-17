@@ -152,13 +152,22 @@ public class EjercicioContainer extends AppCompatActivity  implements View.OnCli
     }
 
     public void salir(){
-        DetalleExamen detalleExamen = SQLite.select().from(DetalleExamen.class).where(DetalleExamen_Table.examen_id.eq(id_examen)).querySingle();
-        detalleExamen.setNota(nota);
-        detalleExamen.setFecha(new Date());
-        detalleExamen.update();
+        Seccion seccion;
+        Leccion leccion = null;
+        if(!getTipo()){
+            DetalleExamen detalleExamen = SQLite.select().from(DetalleExamen.class).where(DetalleExamen_Table.examen_id.eq(id_examen)).querySingle();
+            detalleExamen.setNota(nota);
+            detalleExamen.setFecha(new Date());
+            detalleExamen.update();
+            seccion = SQLite.select().from(Seccion.class).where(Seccion_Table.id.eq(id_examen)).querySingle();
 
-        Seccion seccion = SQLite.select().from(Seccion.class).where(Seccion_Table.id.eq(id_examen)).querySingle();
-        Leccion leccion = SQLite.select().from(Leccion.class).where(Leccion_Table.id.eq(id_leccion)).querySingle();
+        }else{
+            seccion = SQLite.select().from(Seccion.class).where(Seccion_Table.id
+                    .eq(SQLite.select().from(Leccion.class).where(Leccion_Table.id.eq(id_leccion)).querySingle().getSeccion().getId()))
+                    .querySingle();
+            leccion = SQLite.select().from(Leccion.class).where(Leccion_Table.id.eq(id_leccion)).querySingle();
+        }
+
         DetalleSeccion detalleSeccion = SQLite.select().from(DetalleSeccion.class).where(DetalleSeccion_Table.seccion_id.eq(seccion.getId())).querySingle();
         if(!getTipo()){
             if(nota > 7.0){

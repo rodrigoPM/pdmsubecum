@@ -104,13 +104,19 @@ public class EjercicicioUno extends Fragment implements View.OnClickListener {
                     Log.d("ejercicio respuesta", ""+ejercicio.getRespuesta());
                     if(respuesta.equals(ejercicio.getRespuesta())){
                         Toast.makeText(getActivity(),"Respuesta correcta",Toast.LENGTH_SHORT).show();
+                        MediaPlayer mp1 = MediaPlayer.create(getActivity(),R.raw.correcto);
+                        mp1.start();
                         ((EjercicioContainer)getActivity()).mostrarBoton();
                         ((EjercicioContainer)getActivity()).setEstado(true);
                     }else{
+                        MediaPlayer mp1 = MediaPlayer.create(getActivity(),R.raw.incorrecto);
+                        mp1.start();
                         Toast.makeText(getActivity(),"Incorrecto",Toast.LENGTH_SHORT).show();
                         ((EjercicioContainer)getActivity()).mostrarBoton();
                     }
                 }else{
+                    MediaPlayer mp1 = MediaPlayer.create(getActivity(),R.raw.incorrecto);
+                    mp1.start();
                     Toast.makeText(getActivity(),"No hay grabacion",Toast.LENGTH_SHORT).show();
                     ((EjercicioContainer)getActivity()).mostrarBoton();
                 }
