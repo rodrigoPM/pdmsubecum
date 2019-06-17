@@ -16,6 +16,7 @@ import com.pdm.sube.cum.DB.MyDB;
 import com.pdm.sube.cum.DB.models.DetalleExamen;
 import com.pdm.sube.cum.DB.models.DetalleSeccion;
 import com.pdm.sube.cum.DB.models.EjercicioExamen;
+import com.pdm.sube.cum.DB.models.Estadisticas;
 import com.pdm.sube.cum.DB.models.Examen;
 import com.pdm.sube.cum.DB.models.Leccion;
 import com.pdm.sube.cum.DB.models.Seccion;
@@ -296,6 +297,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             ejercicioExamen8.save();
             EjercicioExamen ejercicioExamen9 = new EjercicioExamen(9,false,examen3,ejercicio57);
             ejercicioExamen9.save();
+
+
+
+
+            //estadisticas
+            Date fecha= new Date();
+
+            Estadisticas estadisticas1=new Estadisticas(1,fecha.getMonth()+1,0,seccion1);
+            estadisticas1.save();
+
+            Estadisticas estadisticas2=new Estadisticas(2,fecha.getMonth()+1,0,seccion2);
+            estadisticas2.save();
+            Estadisticas estadisticas3=new Estadisticas(3,fecha.getMonth()+1,0,seccion3);
+            estadisticas3.save();
+
 
 
         }else{
