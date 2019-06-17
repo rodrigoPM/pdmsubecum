@@ -91,7 +91,7 @@ public class EjercicioDos extends Fragment implements View.OnClickListener {
                 if(respuesta != ""){
                     Log.d("respuesta ",respuesta);
                     Log.d("ejercicio respuesta", ""+ejercicio.getRespuesta());
-                    if(respuesta.equals(ejercicio.getRespuesta())){
+                    if(respuesta.toLowerCase().equals(ejercicio.getRespuesta())){
                         MediaPlayer mp1 = MediaPlayer.create(getActivity(),R.raw.correcto);
                         mp1.start();
                         Toast.makeText(getActivity(),"Respuesta correcta",Toast.LENGTH_SHORT).show();
@@ -122,9 +122,16 @@ public class EjercicioDos extends Fragment implements View.OnClickListener {
             case 10:
                 if (resultCode == getActivity().RESULT_OK && data != null) {
                     ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-                    if(ejercicio.getId() == 3 || ejercicio.getId() == 14 && result.get(0) == "y"){
-                        texto_respuesta.setText("i");
-                        respuesta = "i";
+                    if((ejercicio.getId() == 3 || ejercicio.getId() == 14 && result.get(0) == "y")||
+                            (ejercicio.getId() == 5 || ejercicio.getId() == 21 && result.get(0) == "ü")){
+                        if(ejercicio.getId() == 3 || ejercicio.getId() == 14){
+                            texto_respuesta.setText("i");
+                            respuesta = "i";
+                        }
+                        if(ejercicio.getId() == 5 || ejercicio.getId() == 21){
+                            texto_respuesta.setText("u");
+                            respuesta = "u";
+                        }
                     }else{
                         texto_respuesta.setText(result.get(0));
                         respuesta = result.get(0);
