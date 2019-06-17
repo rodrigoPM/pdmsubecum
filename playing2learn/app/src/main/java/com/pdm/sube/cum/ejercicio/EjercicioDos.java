@@ -152,9 +152,19 @@ public class EjercicioDos extends Fragment {
                                 respuesta = "i";
                             }
                             break;
+                        case 20:
+                            if(result.get(0).toLowerCase().equals("eñe")){
+                                respuesta = "ñ";
+                            }
+                            break;
                         case 27:
                             if(result.get(0).toLowerCase().equals("ü")){
                                 respuesta = "u";
+                            }
+                            break;
+                        case 31:
+                            if(result.get(0).toLowerCase().equals("g")){
+                                respuesta = "y";
                             }
                             break;
                     }
