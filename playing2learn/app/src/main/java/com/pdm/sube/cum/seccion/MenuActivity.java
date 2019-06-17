@@ -88,10 +88,6 @@ public class MenuActivity extends AppCompatActivity implements SeccionFragment.O
 
 
 
-
-
-
-
         }
         else{
             contar=estadistica.getNumero_veces();
