@@ -103,7 +103,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:background="@color/colorAccent"
-        android:text="Comprobar"
+        android:text="@string/comprobar"
         android:textAllCaps="true"
         android:textColor="#030303"
         android:textStyle="bold"

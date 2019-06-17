@@ -16,6 +16,7 @@ public class MenuLeccionActivity extends AppCompatActivity implements LeccionFra
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_leccion);
+        this.setTitle(R.string.titulo_leccion);
     }
 
     @Override

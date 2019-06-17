@@ -29,7 +29,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:background="#2196F3"
-        android:text="Finalizar"
+        android:text="@string/finalizar"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"

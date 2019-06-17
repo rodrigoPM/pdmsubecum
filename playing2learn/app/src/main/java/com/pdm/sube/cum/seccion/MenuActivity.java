@@ -30,6 +30,7 @@ public class MenuActivity extends AppCompatActivity implements SeccionFragment.O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
+        this.setTitle(R.string.titulo_menu);
         try {
             user = SQLite.select().from(Usuario.class).where(Usuario_Table.id.eq(getIntent().getExtras().getInt("usuario"))).queryList().get(0);
         }catch (Exception e){
@@ -43,7 +44,6 @@ public class MenuActivity extends AppCompatActivity implements SeccionFragment.O
         Intent intent;
         intent = new Intent(this, MenuLeccionActivity.class);
         intent.putExtra("id", item.getId());
-        Toast.makeText(this,"id: "+item.getId(),Toast.LENGTH_SHORT).show();
         startActivity(intent);
         obtenerEstadisticas(item.getId());
 
