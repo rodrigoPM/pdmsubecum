@@ -163,7 +163,7 @@ public class Registro extends AppCompatActivity implements View.OnClickListener{
             MailJob mailJob = new MailJob(this, String.valueOf(til_correo.getEditText().getText()),"Registro Playing2Learn",
                     "Gracias por registrarte en nuestra Aplicacion, Esperamos que la disfrutes");
             mailJob.execute();
-            Toast.makeText(this,"Correo enviandose",Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this,"Correo enviandose",Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(this,"No hay internet para enviar correo",Toast.LENGTH_SHORT).show();
         }
