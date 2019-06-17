@@ -10,10 +10,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.pdm.sube.cum.DB.models.Leccion;
-import com.pdm.sube.cum.DB.models.Leccion_Table;
+import com.pdm.sube.cum.DB.models.Examen;
+import com.pdm.sube.cum.DB.models.Examen_Table;
 import com.pdm.sube.cum.R;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
+
 
 import java.util.List;
 
@@ -23,28 +24,28 @@ import java.util.List;
  * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
  * interface.
  */
-public class LeccionFragment extends Fragment {
+public class ExamenFragment extends Fragment {
 
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
     // TODO: Customize parameters
-    private int mColumnCount = 2;
+    private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
 
-    private List<Leccion> leccionItems;
+    List<Examen> examenList;
     int id;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public LeccionFragment() {
+    public ExamenFragment() {
     }
 
     // TODO: Customize parameter initialization
     @SuppressWarnings("unused")
-    public static LeccionFragment newInstance(int columnCount) {
-        LeccionFragment fragment = new LeccionFragment();
+    public static ExamenFragment newInstance(int columnCount) {
+        ExamenFragment fragment = new ExamenFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_COLUMN_COUNT, columnCount);
         fragment.setArguments(args);
@@ -54,6 +55,7 @@ public class LeccionFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         if (getArguments() != null) {
             mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
         }
@@ -63,7 +65,7 @@ public class LeccionFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_leccion_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_examen_list, container, false);
 
         // Set the adapter
         if (view instanceof RecyclerView) {
@@ -74,9 +76,8 @@ public class LeccionFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            leccionItems = SQLite.select().from(Leccion.class).where(Leccion_Table.seccion_id.is(id)).queryList();
-
-            recyclerView.setAdapter(new MyLeccionRecyclerViewAdapter(leccionItems, mListener,((MenuLeccionActivity)getActivity())));
+            examenList = SQLite.select().from(Examen.class).where(Examen_Table.seccion_id.is(id)).queryList();
+            recyclerView.setAdapter(new MyExamenRecyclerViewAdapter(examenList, mListener, ((MenuLeccionActivity)getActivity())));
         }
         return view;
     }
@@ -111,6 +112,6 @@ public class LeccionFragment extends Fragment {
      */
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onListFragmentInteraction(Leccion item);
+        void onListFragmentInteraction(Examen item);
     }
 }
