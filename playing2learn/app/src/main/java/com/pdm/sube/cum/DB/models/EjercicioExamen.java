@@ -10,7 +10,7 @@ import com.raizlabs.android.dbflow.structure.BaseModel;
 @Table(database = MyDB.class)
 public class EjercicioExamen extends BaseModel {
     @Column
-    @PrimaryKey
+    @PrimaryKey(autoincrement = true)
     int id;
 
     @Column

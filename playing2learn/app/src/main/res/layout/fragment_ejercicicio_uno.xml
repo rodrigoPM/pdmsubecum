@@ -1,28 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ejercicio.EjercicioFragment">
-
+    android:layout_marginTop="50dp"
+    android:layout_marginBottom="0dp"
+    tools:context=".ejercicio.EjercicicioUno">
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:src="@drawable/android"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    android:id="@+id/imagen_ejercicio"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="8dp"
+    android:layout_marginLeft="8dp"
+    android:layout_marginTop="16dp"
+    android:layout_marginEnd="8dp"
+    android:layout_marginRight="8dp"
+    android:src="@drawable/android"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/texto_ejercicio"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -35,11 +37,11 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_audio" />
 
     <ImageButton
 
-        android:id="@+id/imageButton"
+        android:id="@+id/btn_audio"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_marginStart="170dp"
@@ -53,10 +55,10 @@
         android:src="@drawable/icono_sonido"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/imagen_ejercicio" />
 
     <ImageButton
-        android:id="@+id/imageButton2"
+        android:id="@+id/btn_grabar"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="155dp"
@@ -70,10 +72,10 @@
         android:src="@drawable/icono_microfono"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/texto_ejercicio" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/texto_respuesta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="155dp"
@@ -88,10 +90,10 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton2" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_grabar" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btn_comprobar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"

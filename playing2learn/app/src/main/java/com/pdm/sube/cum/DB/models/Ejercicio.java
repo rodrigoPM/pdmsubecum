@@ -11,7 +11,7 @@ import com.pdm.sube.cum.DB.MyDB;
 @Table(database = MyDB.class)
 public class Ejercicio extends BaseModel {
     @Column
-    @PrimaryKey
+    @PrimaryKey(autoincrement = true)
     int id;
 
     @Column

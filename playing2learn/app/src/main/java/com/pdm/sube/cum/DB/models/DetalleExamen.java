@@ -12,7 +12,7 @@ import java.util.Date;
 @Table(database = MyDB.class)
 public class DetalleExamen extends BaseModel {
     @Column
-    @PrimaryKey
+    @PrimaryKey(autoincrement = true)
     int id;
 
     @Column

@@ -11,7 +11,7 @@ import com.raizlabs.android.dbflow.structure.BaseModel;
 public class DetalleSeccion extends BaseModel {
 
     @Column
-    @PrimaryKey
+    @PrimaryKey(autoincrement = true)
     int id;
 
     @Column
