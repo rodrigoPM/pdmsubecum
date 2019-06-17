@@ -15,10 +15,10 @@ public class Ejercicio extends BaseModel {
     int id;
 
     @Column
-    int imagen;
+    String imagen;
 
     @Column
-    int audio;
+    String audio;
 
     @Column
     String respuesta;
@@ -28,7 +28,7 @@ public class Ejercicio extends BaseModel {
     Leccion leccion;
 
 
-    public Ejercicio(int id, int imagen, int audio, String respuesta, Leccion leccion) {
+    public Ejercicio(int id, String imagen, String audio, String respuesta, Leccion leccion) {
         this.id = id;
         this.imagen = imagen;
         this.audio = audio;
@@ -47,19 +47,19 @@ public class Ejercicio extends BaseModel {
         this.id = id;
     }
 
-    public int getImagen() {
+    public String  getImagen() {
         return imagen;
     }
 
-    public void setImagen(int imagen) {
+    public void setImagen(String imagen) {
         this.imagen = imagen;
     }
 
-    public int getAudio() {
+    public String getAudio() {
         return audio;
     }
 
-    public void setAudio(int audio) {
+    public void setAudio(String audio) {
         this.audio = audio;
     }
 

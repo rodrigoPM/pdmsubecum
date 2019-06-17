@@ -76,12 +76,9 @@ public class SeccionFragment extends Fragment {
             }
 
             seccionItems = SQLite.select().from(Seccion.class).queryList();
-            //seccionItems = new ArrayList<>();
-            //seccionItems.add(new Seccion(1,"Alfabeto",R.drawable.alfabeto1,1,1,2));
-            //seccionItems.add(new Seccion(2,"Numeros",R.drawable.numeros_general,2,2,2));
-            //seccionItems.add(new Seccion(3,"Mama y Papa",R.drawable.mama_papa,3,3,2));
 
-            recyclerView.setAdapter(new MySeccionRecyclerViewAdapter(seccionItems, mListener));
+
+            recyclerView.setAdapter(new MySeccionRecyclerViewAdapter(seccionItems, mListener, ((MenuActivity)getActivity())));
         }
         return view;
     }

@@ -28,5 +28,6 @@ public class MenuActivity extends AppCompatActivity implements SeccionFragment.O
         intent.putExtra("id", item.getId());
         Toast.makeText(this,"id: "+item.getId(),Toast.LENGTH_SHORT).show();
         startActivity(intent);
+
     }
 }

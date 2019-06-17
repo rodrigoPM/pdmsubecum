@@ -81,7 +81,7 @@ public class LeccionFragment extends Fragment {
             }
             leccionItems = SQLite.select().from(Leccion.class).where(Leccion_Table.seccion_id.is(id)).queryList();
 
-            recyclerView.setAdapter(new MyLeccionRecyclerViewAdapter(leccionItems, mListener));
+            recyclerView.setAdapter(new MyLeccionRecyclerViewAdapter(leccionItems, mListener,((menuLeccionActivity)getActivity())));
         }
         return view;
     }

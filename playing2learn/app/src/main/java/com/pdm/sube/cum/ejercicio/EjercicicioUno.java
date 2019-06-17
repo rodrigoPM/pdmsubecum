@@ -1,6 +1,7 @@
 package com.pdm.sube.cum.ejercicio;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -36,6 +37,7 @@ public class EjercicicioUno extends Fragment implements View.OnClickListener {
 
 
     Ejercicio ejercicio;
+    Context context;
     String respuesta = "";
 
 
@@ -57,7 +59,10 @@ public class EjercicicioUno extends Fragment implements View.OnClickListener {
         btn_comprobar = v.findViewById(R.id.btn_comprobar);
 
         ejercicio = ((EjercicioContainer)getActivity()).getEjercicio();
-        imagen.setImageResource(ejercicio.getImagen());
+        context = getActivity();
+
+        int resId = context.getResources().getIdentifier(ejercicio.getImagen(),"drawable",context.getPackageName());
+        imagen.setImageResource(resId);
         texto_ejercicio.setText(ejercicio.getRespuesta());
         texto_respuesta.setText("");
 
@@ -73,7 +78,8 @@ public class EjercicicioUno extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btn_audio:
-                MediaPlayer mp = MediaPlayer.create(getActivity(),ejercicio.getAudio());
+                int resId = context.getResources().getIdentifier(ejercicio.getAudio(),"raw",context.getPackageName());
+                MediaPlayer mp = MediaPlayer.create(getActivity(),resId);
                 mp.start();
                 break;
             case R.id.btn_grabar:

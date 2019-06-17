@@ -18,13 +18,13 @@ public class Examen extends BaseModel {
     String nombre;
 
     @Column
-    int imagen;
+    String imagen;
 
     @Column
     @ForeignKey(saveForeignKeyModel = false)
     Seccion seccion;
 
-    public Examen(int id, String nombre, int imagen, Seccion seccion) {
+    public Examen(int id, String nombre, String imagen, Seccion seccion) {
         this.id = id;
         this.nombre = nombre;
         this.imagen = imagen;
@@ -50,11 +50,11 @@ public class Examen extends BaseModel {
         this.nombre = nombre;
     }
 
-    public int getImagen() {
+    public String getImagen() {
         return imagen;
     }
 
-    public void setImagen(int imagen) {
+    public void setImagen(String imagen) {
         this.imagen = imagen;
     }
 

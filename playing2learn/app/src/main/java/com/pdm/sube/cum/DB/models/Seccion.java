@@ -17,7 +17,7 @@ public class Seccion extends BaseModel {
     String nombre;
 
     @Column
-    int imagen;
+    String imagen;
 
     @Column
     int nivel;
@@ -28,7 +28,7 @@ public class Seccion extends BaseModel {
     @Column
     int total_lecciones;
 
-    public Seccion(int id, String nombre, int imagen, int nivel, int correlativo, int total_lecciones) {
+    public Seccion(int id, String nombre, String imagen, int nivel, int correlativo, int total_lecciones) {
         this.id = id;
         this.nombre = nombre;
         this.imagen = imagen;
@@ -56,11 +56,11 @@ public class Seccion extends BaseModel {
         this.nombre = nombre;
     }
 
-    public int getImagen() {
+    public String getImagen() {
         return imagen;
     }
 
-    public void setImagen(int imagen) {
+    public void setImagen(String imagen) {
         this.imagen = imagen;
     }
 

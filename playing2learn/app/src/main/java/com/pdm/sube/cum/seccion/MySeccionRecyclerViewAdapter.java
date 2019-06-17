@@ -1,5 +1,6 @@
 package com.pdm.sube.cum.seccion;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,10 +19,12 @@ public class MySeccionRecyclerViewAdapter extends RecyclerView.Adapter<MySeccion
 
     private final List<Seccion> mValues;
     private final OnListFragmentInteractionListener mListener;
+    private Context context;
 
-    public MySeccionRecyclerViewAdapter(List<Seccion> items, OnListFragmentInteractionListener listener) {
+    public MySeccionRecyclerViewAdapter(List<Seccion> items, OnListFragmentInteractionListener listener, Context context) {
         mValues = items;
         mListener = listener;
+        this.context = context;
     }
 
     @Override
@@ -35,7 +38,8 @@ public class MySeccionRecyclerViewAdapter extends RecyclerView.Adapter<MySeccion
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
         holder.nombre_seccion.setText(holder.mItem.getNombre());
-        holder.imagen_seccion.setImageResource(holder.mItem.getImagen());
+        int resId = context.getResources().getIdentifier(holder.mItem.getImagen(),"drawable",context.getPackageName());
+        holder.imagen_seccion.setImageResource(resId);
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override

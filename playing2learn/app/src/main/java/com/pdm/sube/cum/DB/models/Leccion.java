@@ -19,7 +19,7 @@ public class Leccion extends BaseModel {
     String nombre;
 
     @Column
-    int imagen;
+    String imagen;
 
     @Column
     int correlativo;
@@ -31,7 +31,7 @@ public class Leccion extends BaseModel {
     @ForeignKey(saveForeignKeyModel = false)
     Seccion seccion;
 
-    public Leccion(int id, String nombre, int imagen, int correlativo, boolean estado, Seccion seccion) {
+    public Leccion(int id, String nombre, String imagen, int correlativo, boolean estado, Seccion seccion) {
         this.id = id;
         this.nombre = nombre;
         this.imagen = imagen;
@@ -59,11 +59,11 @@ public class Leccion extends BaseModel {
         this.nombre = nombre;
     }
 
-    public int getImagen() {
+    public String getImagen() {
         return imagen;
     }
 
-    public void setImagen(int imagen) {
+    public void setImagen(String imagen) {
         this.imagen = imagen;
     }
 
