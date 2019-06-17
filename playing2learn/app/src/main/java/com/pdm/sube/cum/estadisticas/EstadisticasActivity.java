@@ -72,6 +72,9 @@ public class EstadisticasActivity extends AppCompatActivity {
             e.printStackTrace();
 
 
+            Toast.makeText(this,"no hay datos disponibles",Toast.LENGTH_SHORT).show();
+
+
 
         }
 

@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.pdm.sube.cum.DB.models.DetalleExamen;
 import com.pdm.sube.cum.DB.models.DetalleSeccion;
+import com.pdm.sube.cum.DB.models.Estadisticas;
 import com.pdm.sube.cum.DB.models.Examen;
 import com.pdm.sube.cum.DB.models.Examen_Table;
 import com.pdm.sube.cum.DB.models.Seccion;
@@ -100,9 +101,39 @@ public class Registro extends AppCompatActivity implements View.OnClickListener{
                             seccion2.save();
                             seccion3.save();
 
+
+
+                            Seccion seccion1 = new Seccion(1, "Alfabeto", "alfabeto1", 1, 1, 2);
+                            seccion1.save();
+                            Seccion seccion_2 = new Seccion(2, "Numeros", "numeros_general", 2, 2, 2);
+                            seccion2.save();
+                            Seccion seccion_3 = new Seccion(3, "Mama y Papa", "mama_papa", 3, 3, 2);
+                            seccion3.save();
+
+
+
+
+
+
+
+                            Date fecha = new Date();
+
+
+                            Estadisticas estadisticas1 = new Estadisticas(1, fecha.getMonth() + 1, 0, seccion1, user2);
+                            estadisticas1.save();
+
+                            Estadisticas estadisticas2 = new Estadisticas(2, fecha.getMonth() + 1, 0, seccion_2, user2);
+                            estadisticas2.save();
+                            Estadisticas estadisticas3 = new Estadisticas(3, fecha.getMonth() + 1, 0, seccion_3, user2);
+                            estadisticas3.save();
+
+
+
                             Toast.makeText(this,"usuario guardado", Toast.LENGTH_SHORT).show();
                             intent = new Intent(Registro.this, MainActivity.class);
                             startActivity(intent);
+
+
                         }
                         else{
                             Toast.makeText(this,"clave no es similar", Toast.LENGTH_SHORT).show();
