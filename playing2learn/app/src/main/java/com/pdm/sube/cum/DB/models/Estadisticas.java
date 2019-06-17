@@ -26,6 +26,7 @@ public class Estadisticas extends BaseModel {
 
 
     @Column
+    @PrimaryKey
     @ForeignKey
     Usuario usuario;
 

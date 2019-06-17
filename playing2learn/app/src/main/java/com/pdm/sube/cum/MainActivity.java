@@ -277,12 +277,12 @@ public class MainActivity extends AppCompatActivity{
             //estadisticas
             Date fecha = new Date();
 
-            Estadisticas estadisticas1 = new Estadisticas(1, fecha.getMonth() + 1, 0, seccion1, user);
+            Estadisticas estadisticas1 = new Estadisticas(1, fecha.getMonth() + 1, 0, seccion1, usuario1);
             estadisticas1.save();
 
-            Estadisticas estadisticas2 = new Estadisticas(2, fecha.getMonth() + 1, 0, seccion2, user);
+            Estadisticas estadisticas2 = new Estadisticas(2, fecha.getMonth() + 1, 0, seccion2, usuario1);
             estadisticas2.save();
-            Estadisticas estadisticas3 = new Estadisticas(3, fecha.getMonth() + 1, 0, seccion3, user);
+            Estadisticas estadisticas3 = new Estadisticas(3, fecha.getMonth() + 1, 0, seccion3, usuario1);
             estadisticas3.save();
 
 

@@ -40,8 +40,8 @@ public class Registro extends AppCompatActivity implements View.OnClickListener{
     @BindView(R.id.til_correo)
     TextInputLayout til_correo;
 
-    public static String user_email = "dixonforeverandever@gmail.com";
-    public static String pass_email = "dixonforever1234";
+    public static String user_email ;
+    public static String pass_email ;
 
 
 
@@ -91,6 +91,8 @@ public class Registro extends AppCompatActivity implements View.OnClickListener{
                             user2.setUsuario(String.valueOf(til_usuario.getEditText().getText()));
                             user2.setPassword(String.valueOf(til_password1.getEditText().getText()));
                             user2.setCorreo(String.valueOf(til_correo.getEditText().getText()));
+                            user_email=til_correo.getEditText().getText().toString();
+                            pass_email=til_correo.getEditText().getText().toString();
                             user2.setEstado(true);
                             user2.save();
                             user = SQLite.select().from(Usuario.class).where(Usuario_Table.usuario.eq(this.til_usuario.getEditText().getText().toString())).queryList().get(0);
