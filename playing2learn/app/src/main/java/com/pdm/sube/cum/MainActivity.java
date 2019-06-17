@@ -16,6 +16,7 @@ import com.pdm.sube.cum.DB.MyDB;
 import com.pdm.sube.cum.DB.models.DetalleExamen;
 import com.pdm.sube.cum.DB.models.DetalleSeccion;
 import com.pdm.sube.cum.DB.models.EjercicioExamen;
+import com.pdm.sube.cum.DB.models.Estadisticas;
 import com.pdm.sube.cum.DB.models.Examen;
 import com.pdm.sube.cum.DB.models.Leccion;
 import com.pdm.sube.cum.DB.models.Seccion;
@@ -32,7 +33,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button btnLogin;
     EditText edt_usuario, edt_password;
     TextView txt_crear_cuenta;
+
     Usuario user;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,19 +60,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         switch (v.getId()) {
             case R.id.login_btn_login:
-               if(SQLite.select().from(Usuario.class).where(Usuario_Table.usuario.eq(this.edt_usuario.getText().toString())).count()!=0){
 
-                   if(SQLite.select().from(Usuario.class).where(Usuario_Table.password.eq(this.edt_password.getText().toString())).count()!=0){
+                try {
+                    user = SQLite.select().from(Usuario.class).where(Usuario_Table.usuario.eq(this.edt_usuario.getText().toString())).queryList().get(0);
+                }catch (Exception e){
+                    user = null;
+                }
+                if(user != null){
+                    if(user.getPassword().equals(this.edt_password.getText().toString())){
+                        intent = new Intent(MainActivity.this, MenuActivity.class);
+                        intent.putExtra("usuario",user.getId());
+                        startActivity(intent);
+                    }else{
+                        Toast.makeText(this, "Password incorrecto" , Toast.LENGTH_SHORT).show();
+                    }
+                }else{
 
-
-                       intent = new Intent(MainActivity.this, MenuActivity.class);
-                   // intent.putExtra("usuario",user.getUsuario());
-
-                       startActivity(intent);
-                   }else{
-                       Toast.makeText(this, "Password incorrecto" , Toast.LENGTH_SHORT).show();
-                   }
-               }else{
                    Toast.makeText(this, "El Usuario no existe", Toast.LENGTH_SHORT).show();
                }
 
@@ -113,71 +119,71 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
             /////// ejercicios vocales
-            Ejercicio ejercicio1 = new Ejercicio(1,"letra_a,","letra_a","a",leccion1);
+            Ejercicio ejercicio1 = new Ejercicio(1,"letra_a","letra_a","a",leccion1);
             ejercicio1.save();
-            Ejercicio ejercicio2 = new Ejercicio(2,"letra_e,","letra_e","e",leccion1);
+            Ejercicio ejercicio2 = new Ejercicio(2,"letra_e","letra_e","e",leccion1);
             ejercicio2.save();
-            Ejercicio ejercicio3 = new Ejercicio(3,"letra_i,","letra_i","i",leccion1);
+            Ejercicio ejercicio3 = new Ejercicio(3,"letra_i","letra_i","i",leccion1);
             ejercicio3.save();
-            Ejercicio ejercicio4 = new Ejercicio(4,"letra_o,","letra_o","o",leccion1);
+            Ejercicio ejercicio4 = new Ejercicio(4,"letra_o","letra_o","o",leccion1);
             ejercicio4.save();
-            Ejercicio ejercicio5 = new Ejercicio(5,"letra_u,","letra_u","u",leccion1);
+            Ejercicio ejercicio5 = new Ejercicio(5,"letra_u","letra_u","u",leccion1);
             ejercicio5.save();
 
             ////// ejercicios abecedario
-            Ejercicio ejercicio6 = new Ejercicio(6,"letra_a,","letra_a","a",leccion2);
+            Ejercicio ejercicio6 = new Ejercicio(6,"letra_a","letra_a","a",leccion2);
             ejercicio6.save();
-            Ejercicio ejercicio7 = new Ejercicio(7,"letra_b,","letra_b","b",leccion2);
+            Ejercicio ejercicio7 = new Ejercicio(7,"letra_b","letra_b","b",leccion2);
             ejercicio7.save();
-            Ejercicio ejercicio8 = new Ejercicio(8,"letra_c,","letra_c","c",leccion2);
+            Ejercicio ejercicio8 = new Ejercicio(8,"letra_c","letra_c","c",leccion2);
             ejercicio8.save();
-            Ejercicio ejercicio9 = new Ejercicio(9,"letra_d,","letra_d","d",leccion2);
+            Ejercicio ejercicio9 = new Ejercicio(9,"letra_d","letra_d","d",leccion2);
             ejercicio9.save();
-            Ejercicio ejercicio10 = new Ejercicio(10,"letra_e,","letra_e","e",leccion2);
+            Ejercicio ejercicio10 = new Ejercicio(10,"letra_e","letra_e","e",leccion2);
             ejercicio10.save();
-            Ejercicio ejercicio11 = new Ejercicio(11,"letra_f,","letra_f","f",leccion2);
+            Ejercicio ejercicio11 = new Ejercicio(11,"letra_f","letra_f","f",leccion2);
             ejercicio11.save();
-            Ejercicio ejercicio12 = new Ejercicio(12,"letra_g,","letra_g","g",leccion2);
+            Ejercicio ejercicio12 = new Ejercicio(12,"letra_g","letra_g","g",leccion2);
             ejercicio12.save();
-            Ejercicio ejercicio13 = new Ejercicio(13,"letra_h,","letra_h","h",leccion2);
+            Ejercicio ejercicio13 = new Ejercicio(13,"letra_h","letra_h","h",leccion2);
             ejercicio13.save();
-            Ejercicio ejercicio14 = new Ejercicio(14,"letra_i,","letra_i","i",leccion2);
+            Ejercicio ejercicio14 = new Ejercicio(14,"letra_i","letra_i","i",leccion2);
             ejercicio14.save();
-            Ejercicio ejercicio15 = new Ejercicio(15,"letra_j,","letra_j","j",leccion2);
+            Ejercicio ejercicio15 = new Ejercicio(15,"letra_j","letra_j","j",leccion2);
             ejercicio15.save();
-            Ejercicio ejercicio16 = new Ejercicio(16,"letra_k,","letra_k","k",leccion2);
+            Ejercicio ejercicio16 = new Ejercicio(16,"letra_k","letra_k","k",leccion2);
             ejercicio16.save();
-            Ejercicio ejercicio17 = new Ejercicio(17,"letra_l,","letra_l","l",leccion2);
+            Ejercicio ejercicio17 = new Ejercicio(17,"letra_l","letra_l","l",leccion2);
             ejercicio17.save();
-            Ejercicio ejercicio18 = new Ejercicio(18,"letra_m,","letra_m","m",leccion2);
+            Ejercicio ejercicio18 = new Ejercicio(18,"letra_m","letra_m","m",leccion2);
             ejercicio18.save();
-            Ejercicio ejercicio19 = new Ejercicio(19,"letra_n,","letra_n","n",leccion2);
+            Ejercicio ejercicio19 = new Ejercicio(19,"letra_n","letra_n","n",leccion2);
             ejercicio19.save();
-            Ejercicio ejercicio20 = new Ejercicio(20,"letra_nn,","letra_nn","ñ",leccion2);
+            Ejercicio ejercicio20 = new Ejercicio(20,"letra_nn","letra_nn","ñ",leccion2);
             ejercicio20.save();
-            Ejercicio ejercicio21 = new Ejercicio(21,"letra_o,","letra_o","o",leccion2);
+            Ejercicio ejercicio21 = new Ejercicio(21,"letra_o","letra_o","o",leccion2);
             ejercicio21.save();
-            Ejercicio ejercicio22 = new Ejercicio(22,"letra_p,","letra_p","p",leccion2);
+            Ejercicio ejercicio22 = new Ejercicio(22,"letra_p","letra_p","p",leccion2);
             ejercicio22.save();
-            Ejercicio ejercicio23 = new Ejercicio(23,"letra_q,","letra_q","q",leccion2);
+            Ejercicio ejercicio23 = new Ejercicio(23,"letra_q","letra_q","q",leccion2);
             ejercicio23.save();
-            Ejercicio ejercicio24 = new Ejercicio(24,"letra_r,","letra_r","r",leccion2);
+            Ejercicio ejercicio24 = new Ejercicio(24,"letra_r","letra_r","r",leccion2);
             ejercicio24.save();
-            Ejercicio ejercicio25 = new Ejercicio(25,"letra_s,","letra_s","s",leccion2);
+            Ejercicio ejercicio25 = new Ejercicio(25,"letra_s","letra_s","s",leccion2);
             ejercicio25.save();
-            Ejercicio ejercicio26 = new Ejercicio(26,"letra_t,","letra_t","t",leccion2);
+            Ejercicio ejercicio26 = new Ejercicio(26,"letra_t","letra_t","t",leccion2);
             ejercicio26.save();
-            Ejercicio ejercicio27 = new Ejercicio(27,"letra_u,","letra_u","u",leccion2);
+            Ejercicio ejercicio27 = new Ejercicio(27,"letra_u","letra_u","u",leccion2);
             ejercicio27.save();
-            Ejercicio ejercicio28 = new Ejercicio(28,"letra_v,","letra_v","v",leccion2);
+            Ejercicio ejercicio28 = new Ejercicio(28,"letra_v","letra_v","v",leccion2);
             ejercicio28.save();
-            Ejercicio ejercicio29 = new Ejercicio(29,"letra_w,","letra_w","w",leccion2);
+            Ejercicio ejercicio29 = new Ejercicio(29,"letra_w","letra_w","w",leccion2);
             ejercicio29.save();
-            Ejercicio ejercicio30 = new Ejercicio(30,"letra_x,","letra_x","x",leccion2);
+            Ejercicio ejercicio30 = new Ejercicio(30,"letra_x","letra_x","x",leccion2);
             ejercicio30.save();
-            Ejercicio ejercicio31 = new Ejercicio(31,"letra_y,","letra_y","y",leccion2);
+            Ejercicio ejercicio31 = new Ejercicio(31,"letra_y","letra_y","y",leccion2);
             ejercicio31.save();
-            Ejercicio ejercicio32 = new Ejercicio(32,"letra_z,","letra_z","z",leccion2);
+            Ejercicio ejercicio32 = new Ejercicio(32,"letra_z","letra_z","z",leccion2);
             ejercicio32.save();
 
             Examen examen1 = new Examen(1,"Examen Seccion 1","examen",seccion1);
@@ -293,6 +299,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             ejercicioExamen8.save();
             EjercicioExamen ejercicioExamen9 = new EjercicioExamen(9,false,examen3,ejercicio57);
             ejercicioExamen9.save();
+
+
+
+
+            //estadisticas
+            Date fecha= new Date();
+
+            Estadisticas estadisticas1=new Estadisticas(1,fecha.getMonth()+1,0,seccion1);
+            estadisticas1.save();
+
+            Estadisticas estadisticas2=new Estadisticas(2,fecha.getMonth()+1,0,seccion2);
+            estadisticas2.save();
+            Estadisticas estadisticas3=new Estadisticas(3,fecha.getMonth()+1,0,seccion3);
+            estadisticas3.save();
+
 
 
         }else{
