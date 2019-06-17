@@ -102,19 +102,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             seccion3.save();
 
             //////// lecciones
-            Leccion leccion1 = new Leccion(1,"Vocales", "vocales",1,true,seccion1);
+            Leccion leccion1 = new Leccion(1,"Vocales", "vocales",1,false,seccion1);
             leccion1.save();
-            Leccion leccion2 = new Leccion(2,"Abecedario", "abecedario",2,true,seccion1);
+            Leccion leccion2 = new Leccion(2,"Abecedario", "abecedario",2,false,seccion1);
             leccion2.save();
 
-            Leccion leccion3 = new Leccion(3,"0-9", "numeros_0_10",1,true,seccion2);
+            Leccion leccion3 = new Leccion(3,"0-9", "numeros_0_10",1,false,seccion2);
             leccion3.save();
-            Leccion leccion4 = new Leccion(4,"decenas", "numero_10_decena",2,true,seccion2);
+            Leccion leccion4 = new Leccion(4,"decenas", "numero_10_decena",2,false,seccion2);
             leccion4.save();
 
-            Leccion leccion5 = new Leccion(5,"mama", "mama",1,true,seccion3);
+            Leccion leccion5 = new Leccion(5,"mama", "mama",1,false,seccion3);
             leccion5.save();
-            Leccion leccion6 = new Leccion(6,"papa", "papa",2,true,seccion3);
+            Leccion leccion6 = new Leccion(6,"papa", "papa",2,false,seccion3);
             leccion6.save();
 
 

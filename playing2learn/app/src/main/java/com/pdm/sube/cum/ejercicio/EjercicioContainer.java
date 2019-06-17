@@ -178,9 +178,16 @@ public class EjercicioContainer extends AppCompatActivity  implements View.OnCli
             if(nota > 7.0){
                 leccion.setEstado(true);
                 leccion.update();
-                detalleSeccion.setLecciones_aprobadas(detalleSeccion.getLecciones_aprobadas() + 1);
             }
         }
+        List<Leccion> leccionList = SQLite.select().from(Leccion.class).where(Leccion_Table.seccion_id.eq(seccion.getId())).queryList();
+        int count = 0;
+        for(Leccion leccionItem: leccionList){
+            if(leccionItem.isEstado()){
+               count++;
+            }
+        }
+        detalleSeccion.setLecciones_aprobadas(count);
         detalleSeccion.update();
 
         finish();
