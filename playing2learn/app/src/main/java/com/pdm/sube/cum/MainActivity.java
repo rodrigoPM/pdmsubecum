@@ -3,6 +3,7 @@ package com.pdm.sube.cum;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -10,6 +11,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.pdm.sube.cum.DB.ApplicationDB;
+import com.pdm.sube.cum.DB.MyDB;
 import com.pdm.sube.cum.DB.models.DetalleExamen;
 import com.pdm.sube.cum.DB.models.DetalleSeccion;
 import com.pdm.sube.cum.DB.models.EjercicioExamen;
@@ -18,7 +21,9 @@ import com.pdm.sube.cum.DB.models.Leccion;
 import com.pdm.sube.cum.DB.models.Seccion;
 import com.pdm.sube.cum.DB.models.Usuario;
 import com.pdm.sube.cum.DB.models.Ejercicio;
+import com.pdm.sube.cum.DB.models.Usuario_Table;
 import com.pdm.sube.cum.seccion.MenuActivity;
+//import com.raizlabs.android.dbflow.config.MyDBMyDB_Database;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 
 import java.util.Date;
@@ -27,6 +32,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button btnLogin;
     EditText edt_usuario, edt_password;
     TextView txt_crear_cuenta;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,10 +53,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
+        Intent intent;
+        Usuario user = null;
         switch (v.getId()) {
             case R.id.login_btn_login:
-                Toast.makeText(this,"Click a login", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(this, MenuActivity.class));
+               if(SQLite.select().from(Usuario.class).where(Usuario_Table.usuario.eq(this.edt_usuario.getText().toString())).count()!=0){
+
+                   if(SQLite.select().from(Usuario.class).where(Usuario_Table.password.eq(this.edt_password.getText().toString())).count()!=0){
+
+
+                       intent = new Intent(MainActivity.this, MenuActivity.class);
+                    //   intent.putExtra("usuario",user.getUsuario());
+
+                       startActivity(intent);
+                   }else{
+                       Toast.makeText(this, "Password incorrecto" , Toast.LENGTH_SHORT).show();
+                   }
+               }else{
+                   Toast.makeText(this, "El Usuario no existe", Toast.LENGTH_SHORT).show();
+               }
 
                 break;
             case R.id.txt_crear_cuenta:
