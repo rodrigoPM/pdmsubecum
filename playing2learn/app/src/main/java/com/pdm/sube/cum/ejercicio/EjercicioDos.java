@@ -125,20 +125,40 @@ public class EjercicioDos extends Fragment {
             case 10:
                 if (resultCode == getActivity().RESULT_OK && data != null) {
                     ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-                    if ((ejercicio.getId() == 3 || ejercicio.getId() == 14 && result.get(0) == "y") ||
-                            (ejercicio.getId() == 5 || ejercicio.getId() == 21 && result.get(0) == "ü")) {
-                        if (ejercicio.getId() == 3 || ejercicio.getId() == 14) {
-                            texto_respuesta.setText("i");
-                            respuesta = "i";
-                        }
-                        if (ejercicio.getId() == 5 || ejercicio.getId() == 21) {
-                            texto_respuesta.setText("u");
-                            respuesta = "u";
-                        }
-                    } else {
-                        texto_respuesta.setText(result.get(0));
-                        respuesta = result.get(0);
+                    respuesta = result.get(0);
+                    switch (ejercicio.getId()){
+                        case 3:
+                            if(result.get(0) == "y"){
+                                respuesta = "i";
+                            }
+                            break;
+                        case 5:
+                            if(result.get(0) == "ü"){
+                                respuesta = "u";
+                            }
+                            break;
+                        case 7:
+                            if(result.get(0) == "v"){
+                                respuesta = "b";
+                            }
+                            break;
+                        case 9:
+                            if(result.get(0) == "de"){
+                                respuesta = "d";
+                            }
+                            break;
+                        case 14:
+                            if(result.get(0) == "y"){
+                                respuesta = "i";
+                            }
+                            break;
+                        case 21:
+                            if(result.get(0) == "ü"){
+                                respuesta = "u";
+                            }
+                            break;
                     }
+                    texto_respuesta.setText(respuesta);
                 }
                 break;
         }
