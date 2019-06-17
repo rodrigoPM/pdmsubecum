@@ -1,8 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-
-    <string name="login_usuario">usuario</string>
-    <string name="login_password">contraseña</string>
-    <string name="btn_login">Iniciar Sesion</string>
+    <string name="app_name">playing2learn</string>
+    <string name="login_usuario">user</string>
+    <string name="login_password">password</string>
+    <string name="btn_login">Login</string>
+    <string name="titulo_registro">User Registration</string>
+    <string name="titulo_menu">Playing to Learn</string>
+    <string name="titulo_leccion">Lessons and Exams</string>
+    <string name="crear_cuenta">Create Account</string>
+    <string name="registro_user">User register</string>
+    <string name="registro_correo">mail</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_ejercicio_container">ExerciseContainer</string>
+    <string name="action_settings">Statistics</string>
+    <string name="registro_password_confirm">Confirm Password</string>
+    <string name="finalizar">Finalize</string>
+    <string name="comprobar">Check</string>
 </resources>

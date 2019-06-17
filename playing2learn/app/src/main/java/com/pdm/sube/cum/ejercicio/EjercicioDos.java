@@ -23,18 +23,32 @@ import com.pdm.sube.cum.R;
 import java.util.ArrayList;
 import java.util.Locale;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import butterknife.Unbinder;
+
 /**
  * A simple {@link Fragment} subclass.
  */
-public class EjercicioDos extends Fragment implements View.OnClickListener {
+public class EjercicioDos extends Fragment {
 
-    ImageView imagen;
-    TextView texto_ejercicio,texto_respuesta;
-    ImageButton btn_audio,btn_grabar;
-    Button btn_comprobar;
     Ejercicio ejercicio;
     Context context;
     String respuesta = "";
+    @BindView(R.id.imagen_ejercicio)
+    ImageView imagen;
+    @BindView(R.id.texto_ejercicio)
+    TextView texto_ejercicio;
+    @BindView(R.id.btn_audio)
+    ImageButton btn_audio;
+    @BindView(R.id.btn_grabar)
+    ImageButton btn_grabar;
+    @BindView(R.id.texto_respuesta)
+    TextView texto_respuesta;
+    @BindView(R.id.btn_comprobar)
+    Button btn_comprobar;
+    Unbinder unbinder;
 
     public EjercicioDos() {
         // Required empty public constructor
@@ -45,35 +59,25 @@ public class EjercicioDos extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v =  inflater.inflate(R.layout.fragment_ejercicio_dos, container, false);
+        View v = inflater.inflate(R.layout.fragment_ejercicio_dos, container, false);
+        unbinder = ButterKnife.bind(this, v);
 
-        imagen = v.findViewById(R.id.imagen_ejercicio);
-        texto_ejercicio = v.findViewById(R.id.texto_ejercicio);
-        btn_audio = v.findViewById(R.id.btn_audio);
-        btn_grabar = v.findViewById(R.id.btn_grabar);
-        texto_respuesta = v.findViewById(R.id.texto_respuesta);
-        btn_comprobar = v.findViewById(R.id.btn_comprobar);
-
-        ejercicio = ((EjercicioContainer)getActivity()).getEjercicio();
+        ejercicio = ((EjercicioContainer) getActivity()).getEjercicio();
         context = getActivity();
-        int resId = context.getResources().getIdentifier(ejercicio.getImagen(),"drawable",context.getPackageName());
+        int resId = context.getResources().getIdentifier(ejercicio.getImagen(), "drawable", context.getPackageName());
         imagen.setImageResource(resId);
         texto_ejercicio.setText(ejercicio.getRespuesta());
         texto_respuesta.setText("");
 
-        btn_audio.setOnClickListener(this);
-        btn_grabar.setOnClickListener(this);
-        btn_comprobar.setOnClickListener(this);
 
         return v;
     }
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()){
+    @OnClick({R.id.btn_audio, R.id.btn_grabar, R.id.btn_comprobar})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
             case R.id.btn_audio:
-                int resId = context.getResources().getIdentifier(ejercicio.getAudio(),"raw",context.getPackageName());
-                MediaPlayer mp = MediaPlayer.create(getActivity(),resId);
+                int resId = context.getResources().getIdentifier(ejercicio.getAudio(), "raw", context.getPackageName());
+                MediaPlayer mp = MediaPlayer.create(getActivity(), resId);
                 mp.start();
                 break;
             case R.id.btn_grabar:
@@ -81,35 +85,34 @@ public class EjercicioDos extends Fragment implements View.OnClickListener {
                 intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
                 intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
 
-                if(intent.resolveActivity(getActivity().getPackageManager()) != null){
-                    startActivityForResult(intent,10);
-                }else {
-                    Toast.makeText(getActivity(),"Tu dispositivo no soporta Speech to Text",Toast.LENGTH_SHORT).show();
+                if (intent.resolveActivity(getActivity().getPackageManager()) != null) {
+                    startActivityForResult(intent, 10);
+                } else {
+                    Toast.makeText(getActivity(), "Tu dispositivo no soporta Speech to Text", Toast.LENGTH_SHORT).show();
                 }
                 break;
             case R.id.btn_comprobar:
-                if(respuesta != ""){
-                    Log.d("respuesta ",respuesta);
-                    Log.d("ejercicio respuesta", ""+ejercicio.getRespuesta());
-                    if(respuesta.toLowerCase().equals(ejercicio.getRespuesta())){
-                        MediaPlayer mp1 = MediaPlayer.create(getActivity(),R.raw.correcto);
+                if (respuesta != "") {
+                    Log.d("respuesta ", respuesta);
+                    Log.d("ejercicio respuesta", "" + ejercicio.getRespuesta());
+                    if (respuesta.toLowerCase().equals(ejercicio.getRespuesta())) {
+                        MediaPlayer mp1 = MediaPlayer.create(getActivity(), R.raw.correcto);
                         mp1.start();
-                        Toast.makeText(getActivity(),"Respuesta correcta",Toast.LENGTH_SHORT).show();
-                        ((EjercicioContainer)getActivity()).mostrarBoton();
-                        ((EjercicioContainer)getActivity()).setEstado(true);
-                    }else{
-                        MediaPlayer mp1 = MediaPlayer.create(getActivity(),R.raw.incorrecto);
+                        Toast.makeText(getActivity(), "Respuesta correcta", Toast.LENGTH_SHORT).show();
+                        ((EjercicioContainer) getActivity()).mostrarBoton();
+                        ((EjercicioContainer) getActivity()).setEstado(true);
+                    } else {
+                        MediaPlayer mp1 = MediaPlayer.create(getActivity(), R.raw.incorrecto);
                         mp1.start();
-                        Toast.makeText(getActivity(),"Incorrecto",Toast.LENGTH_SHORT).show();
-                        ((EjercicioContainer)getActivity()).mostrarBoton();
+                        Toast.makeText(getActivity(), "Incorrecto", Toast.LENGTH_SHORT).show();
+                        ((EjercicioContainer) getActivity()).mostrarBoton();
                     }
-                }else{
-                    MediaPlayer mp1 = MediaPlayer.create(getActivity(),R.raw.incorrecto);
+                } else {
+                    MediaPlayer mp1 = MediaPlayer.create(getActivity(), R.raw.incorrecto);
                     mp1.start();
-                    Toast.makeText(getActivity(),"No hay grabacion",Toast.LENGTH_SHORT).show();
-                    ((EjercicioContainer)getActivity()).mostrarBoton();
+                    Toast.makeText(getActivity(), "No hay grabacion", Toast.LENGTH_SHORT).show();
+                    ((EjercicioContainer) getActivity()).mostrarBoton();
                 }
-
                 break;
         }
     }
@@ -122,17 +125,17 @@ public class EjercicioDos extends Fragment implements View.OnClickListener {
             case 10:
                 if (resultCode == getActivity().RESULT_OK && data != null) {
                     ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-                    if((ejercicio.getId() == 3 || ejercicio.getId() == 14 && result.get(0) == "y")||
-                            (ejercicio.getId() == 5 || ejercicio.getId() == 21 && result.get(0) == "ü")){
-                        if(ejercicio.getId() == 3 || ejercicio.getId() == 14){
+                    if ((ejercicio.getId() == 3 || ejercicio.getId() == 14 && result.get(0) == "y") ||
+                            (ejercicio.getId() == 5 || ejercicio.getId() == 21 && result.get(0) == "ü")) {
+                        if (ejercicio.getId() == 3 || ejercicio.getId() == 14) {
                             texto_respuesta.setText("i");
                             respuesta = "i";
                         }
-                        if(ejercicio.getId() == 5 || ejercicio.getId() == 21){
+                        if (ejercicio.getId() == 5 || ejercicio.getId() == 21) {
                             texto_respuesta.setText("u");
                             respuesta = "u";
                         }
-                    }else{
+                    } else {
                         texto_respuesta.setText(result.get(0));
                         respuesta = result.get(0);
                     }
@@ -140,4 +143,12 @@ public class EjercicioDos extends Fragment implements View.OnClickListener {
                 break;
         }
     }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
+    }
+
+
 }

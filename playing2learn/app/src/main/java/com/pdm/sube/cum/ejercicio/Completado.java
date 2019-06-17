@@ -74,8 +74,10 @@ public class Completado extends Fragment {
             MediaPlayer mp = MediaPlayer.create(getActivity(), R.raw.sigue);
             mp.start();
         }
-        txt_aprobados.setText("Ejercicios Aprobados: " + ((EjercicioContainer) getActivity()).getAprobadas());
-        txt_reprobados.setText("Ejercicios Reprobados: " + ((EjercicioContainer) getActivity()).getReprobadas());
+
+        txt_aprobados.setText("Ejercicios Aprobados: "+((EjercicioContainer)getActivity()).getAprobadas());
+        txt_reprobados.setText("Ejercicios Reprobados: "+((EjercicioContainer)getActivity()).getReprobadas());
+
 
 
         return v;

@@ -43,7 +43,6 @@ public class EjercicioContainer extends AppCompatActivity  implements View.OnCli
     int id_leccion;
     int id_examen;
     boolean leccion;
-    boolean ejercicio_actual = true;
     float nota;
     int aprobadas = 0;
     int reprobadas = 0;
@@ -59,13 +58,14 @@ public class EjercicioContainer extends AppCompatActivity  implements View.OnCli
 
         if(getIntent().getExtras().getString("tipo").equals("leccion")){
             id_leccion = getIntent().getExtras().getInt("id_leccion");
+            this.setTitle(SQLite.select().from(Leccion.class).where(Leccion_Table.id.eq(id_leccion)).querySingle().getNombre());
             ejercicios = SQLite.select().from(Ejercicio.class).where(Ejercicio_Table.leccion_id.is(id_leccion)).queryList();
             len_ejercicios = ejercicios.size();
-
             leccion = true;
         }
         else{
             id_examen = getIntent().getExtras().getInt("id_examen");
+            this.setTitle(SQLite.select().from(Examen.class).where(Examen_Table.id.eq(id_examen)).querySingle().getNombre());
             ejercicioExamenList = SQLite.select().from(EjercicioExamen.class)
                     .where(EjercicioExamen_Table.examen_id.eq(id_examen)).queryList();
             ejercicios = new ArrayList<>();
