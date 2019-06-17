@@ -57,9 +57,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         Intent intent;
-        Usuario user = null;
+
         switch (v.getId()) {
             case R.id.login_btn_login:
+
                 try {
                     user = SQLite.select().from(Usuario.class).where(Usuario_Table.usuario.eq(this.edt_usuario.getText().toString())).queryList().get(0);
                 }catch (Exception e){
@@ -74,6 +75,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         Toast.makeText(this, "Password incorrecto" , Toast.LENGTH_SHORT).show();
                     }
                 }else{
+
                    Toast.makeText(this, "El Usuario no existe", Toast.LENGTH_SHORT).show();
                }
 
@@ -304,12 +306,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             //estadisticas
             Date fecha= new Date();
 
-            Estadisticas estadisticas1=new Estadisticas(1,fecha.getMonth()+1,0,seccion1);
+            Estadisticas estadisticas1=new Estadisticas(1,fecha.getMonth()+1,0,seccion1,user);
             estadisticas1.save();
 
-            Estadisticas estadisticas2=new Estadisticas(2,fecha.getMonth()+1,0,seccion2);
+            Estadisticas estadisticas2=new Estadisticas(2,fecha.getMonth()+1,0,seccion2,user);
             estadisticas2.save();
-            Estadisticas estadisticas3=new Estadisticas(3,fecha.getMonth()+1,0,seccion3);
+            Estadisticas estadisticas3=new Estadisticas(3,fecha.getMonth()+1,0,seccion3,user);
             estadisticas3.save();
 
 

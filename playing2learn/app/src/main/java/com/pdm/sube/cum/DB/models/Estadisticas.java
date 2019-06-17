@@ -25,16 +25,19 @@ public class Estadisticas extends BaseModel {
     Seccion seccion;
 
 
+    @Column
+    @ForeignKey
+    Usuario usuario;
+
     public Estadisticas() {
-
-
     }
 
-    public Estadisticas(int id_estadisticas, int mes, int numero_veces, Seccion seccion) {
+    public Estadisticas(int id_estadisticas, int mes, int numero_veces, Seccion seccion, Usuario usuario) {
         this.id_estadisticas = id_estadisticas;
         this.mes = mes;
         this.numero_veces = numero_veces;
         this.seccion = seccion;
+        this.usuario = usuario;
     }
 
     public int getId_estadisticas() {
@@ -67,5 +70,13 @@ public class Estadisticas extends BaseModel {
 
     public void setSeccion(Seccion seccion) {
         this.seccion = seccion;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 }
