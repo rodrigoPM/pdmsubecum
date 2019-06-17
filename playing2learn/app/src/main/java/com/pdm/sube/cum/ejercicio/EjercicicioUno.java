@@ -135,32 +135,32 @@ public class EjercicicioUno extends Fragment{
                     respuesta = result.get(0);
                     switch (ejercicio.getId()){
                         case 3:
-                            if(result.get(0) == "y"){
+                            if(result.get(0).toLowerCase().equals("y")){
                                 respuesta = "i";
                             }
                             break;
                         case 5:
-                            if(result.get(0) == "ü"){
+                            if(result.get(0).toLowerCase().equals("ü")){
                                 respuesta = "u";
                             }
                             break;
                         case 7:
-                            if(result.get(0) == "v"){
+                            if(result.get(0).toLowerCase().equals("v")){
                                 respuesta = "b";
                             }
                             break;
                         case 9:
-                            if(result.get(0) == "de"){
+                            if(result.get(0).toLowerCase().equals("de")){
                                 respuesta = "d";
                             }
                             break;
                         case 14:
-                            if(result.get(0) == "y"){
+                            if(result.get(0).toLowerCase().equals("y")){
                                 respuesta = "i";
                             }
                             break;
-                        case 21:
-                            if(result.get(0) == "ü"){
+                        case 27:
+                            if(result.get(0).toLowerCase().equals("ü")){
                                 respuesta = "u";
                             }
                             break;
