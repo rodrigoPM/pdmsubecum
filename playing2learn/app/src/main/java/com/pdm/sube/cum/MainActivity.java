@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button btnLogin;
     EditText edt_usuario, edt_password;
     TextView txt_crear_cuenta;
-
+    Usuario user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         Intent intent;
-        Usuario user = null;
+
         switch (v.getId()) {
             case R.id.login_btn_login:
                if(SQLite.select().from(Usuario.class).where(Usuario_Table.usuario.eq(this.edt_usuario.getText().toString())).count()!=0){
@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
                        intent = new Intent(MainActivity.this, MenuActivity.class);
-                    //   intent.putExtra("usuario",user.getUsuario());
+                   // intent.putExtra("usuario",user.getUsuario());
 
                        startActivity(intent);
                    }else{
