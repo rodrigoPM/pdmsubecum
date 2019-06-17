@@ -16,9 +16,7 @@ import com.pdm.sube.cum.DB.models.Usuario_Table;
 import com.pdm.sube.cum.DB.models.Seccion_Table;
 import com.pdm.sube.cum.R;
 import com.pdm.sube.cum.estadisticas.EstadisticasActivity;
-import com.pdm.sube.cum.leccion.menuLeccionActivity;
-import com.pdm.sube.cum.seccion.SeccionFragment;
-import com.pdm.sube.cum.seccion.SeccionItem;
+import com.pdm.sube.cum.leccion.MenuLeccionActivity;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 import java.util.Date;
 
@@ -26,6 +24,7 @@ import java.util.Date;
 
 public class MenuActivity extends AppCompatActivity implements SeccionFragment.OnListFragmentInteractionListener {
     Usuario user;
+    String usuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,10 +41,11 @@ public class MenuActivity extends AppCompatActivity implements SeccionFragment.O
     @Override
     public void onListFragmentInteraction(Seccion item) {
         Intent intent;
-        intent = new Intent(this,menuLeccionActivity.class);
+        intent = new Intent(this, MenuLeccionActivity.class);
         intent.putExtra("id", item.getId());
         Toast.makeText(this,"id: "+item.getId(),Toast.LENGTH_SHORT).show();
         startActivity(intent);
+        obtenerEstadisticas(item.getId());
 
     }
 
@@ -60,6 +60,7 @@ public class MenuActivity extends AppCompatActivity implements SeccionFragment.O
         switch (item.getItemId()) {
             case R.id.action_settings:
                 Intent intent =new Intent(this, EstadisticasActivity.class);
+                intent.putExtra("usuario",user.getId());
                 startActivity(intent);
                 return true;
             default:
@@ -74,7 +75,7 @@ public class MenuActivity extends AppCompatActivity implements SeccionFragment.O
         int contar=0;
         Date fecha=new Date();
 
-        Estadisticas estadistica= SQLite.select().from(Estadisticas.class).where(Estadisticas_Table.seccion_id.eq(id)).and(Estadisticas_Table.mes.eq(fecha.getMonth()+1)).querySingle();
+        Estadisticas estadistica= SQLite.select().from(Estadisticas.class).where(Estadisticas_Table.seccion_id.eq(id)).and(Estadisticas_Table.usuario_id.eq(user.getId())).and(Estadisticas_Table.mes.eq(fecha.getMonth()+1)).querySingle();
         Seccion seccion = SQLite.select().from(Seccion.class).where(Seccion_Table.id.eq(id)).querySingle();
 
         if(estadistica==null){
@@ -82,7 +83,7 @@ public class MenuActivity extends AppCompatActivity implements SeccionFragment.O
 
             contar=contar+1;
 
-            Estadisticas estadisticas= new Estadisticas(id,fecha.getMonth()+1,contar,seccion);
+            Estadisticas estadisticas= new Estadisticas(id,fecha.getMonth()+1,contar,seccion,user);
             estadisticas.save();
 
 

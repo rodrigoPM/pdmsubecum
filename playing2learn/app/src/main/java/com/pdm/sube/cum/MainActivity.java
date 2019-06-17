@@ -57,9 +57,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         Intent intent;
-        Usuario user = null;
+
         switch (v.getId()) {
             case R.id.login_btn_login:
+
                 try {
                     user = SQLite.select().from(Usuario.class).where(Usuario_Table.usuario.eq(this.edt_usuario.getText().toString())).queryList().get(0);
                 }catch (Exception e){
@@ -74,6 +75,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         Toast.makeText(this, "Password incorrecto" , Toast.LENGTH_SHORT).show();
                     }
                 }else{
+
                    Toast.makeText(this, "El Usuario no existe", Toast.LENGTH_SHORT).show();
                }
 
@@ -100,19 +102,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             seccion3.save();
 
             //////// lecciones
-            Leccion leccion1 = new Leccion(1,"Vocales", "vocales",1,true,seccion1);
+            Leccion leccion1 = new Leccion(1,"Vocales", "vocales",1,false,seccion1);
             leccion1.save();
-            Leccion leccion2 = new Leccion(2,"Abecedario", "abecedario",2,true,seccion1);
+            Leccion leccion2 = new Leccion(2,"Abecedario", "abecedario",2,false,seccion1);
             leccion2.save();
 
-            Leccion leccion3 = new Leccion(3,"0-9", "numeros_0_10",1,true,seccion2);
+            Leccion leccion3 = new Leccion(3,"0-9", "numeros_0_10",1,false,seccion2);
             leccion3.save();
-            Leccion leccion4 = new Leccion(4,"decenas", "numero_10_decena",2,true,seccion2);
+            Leccion leccion4 = new Leccion(4,"decenas", "numero_10_decena",2,false,seccion2);
             leccion4.save();
 
-            Leccion leccion5 = new Leccion(5,"mama", "mama",1,true,seccion3);
+            Leccion leccion5 = new Leccion(5,"mama", "mama",1,false,seccion3);
             leccion5.save();
-            Leccion leccion6 = new Leccion(6,"papa", "papa",2,true,seccion3);
+            Leccion leccion6 = new Leccion(6,"papa", "papa",2,false,seccion3);
             leccion6.save();
 
 
@@ -187,7 +189,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Examen examen1 = new Examen(1,"Examen Seccion 1","examen",seccion1);
             examen1.save();
 
-            DetalleSeccion detalleSeccion1 = new DetalleSeccion(1,true,0,false,usuario1,seccion1);
+            DetalleSeccion detalleSeccion1 = new DetalleSeccion(1,false,0,false,usuario1,seccion1);
             detalleSeccion1.save();
 
             DetalleExamen detalleExamen1 = new DetalleExamen(1,new Date(),0,usuario1,examen1);
@@ -198,7 +200,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             ejercicioExamen1.save();
             EjercicioExamen ejercicioExamen2 = new EjercicioExamen(2,false,examen1,ejercicio15);
             ejercicioExamen2.save();
-            EjercicioExamen ejercicioExamen3 = new EjercicioExamen(3,false,examen1,ejercicio26);
+            EjercicioExamen ejercicioExamen3 = new EjercicioExamen(3,false,examen1,ejercicio25);
             ejercicioExamen3.save();
 
 
@@ -249,7 +251,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Examen examen2 = new Examen(2,"Examen Seccion 2","examen",seccion2);
             examen2.save();
 
-            DetalleSeccion detalleSeccion2 = new DetalleSeccion(2,true,0,false,usuario1,seccion2);
+            DetalleSeccion detalleSeccion2 = new DetalleSeccion(2,false,0,false,usuario1,seccion2);
             detalleSeccion2.save();
 
             DetalleExamen detalleExamen2 = new DetalleExamen(2,new Date(),0,usuario1,examen2);
@@ -258,9 +260,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             EjercicioExamen ejercicioExamen4 = new EjercicioExamen(4,false,examen2,ejercicio37);
             ejercicioExamen4.save();
-            EjercicioExamen ejercicioExamen5 = new EjercicioExamen(5,false,examen2,ejercicio42);
+            EjercicioExamen ejercicioExamen5 = new EjercicioExamen(5,false,examen2,ejercicio41);
             ejercicioExamen5.save();
-            EjercicioExamen ejercicioExamen6 = new EjercicioExamen(6,false,examen2,ejercicio48);
+            EjercicioExamen ejercicioExamen6 = new EjercicioExamen(6,false,examen2,ejercicio47);
             ejercicioExamen6.save();
 
 
@@ -284,7 +286,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Examen examen3 = new Examen(3,"Examen Seccion 3","examen",seccion3);
             examen3.save();
 
-            DetalleSeccion detalleSeccion3 = new DetalleSeccion(3,true,0,false,usuario1,seccion3);
+            DetalleSeccion detalleSeccion3 = new DetalleSeccion(3,false,0,false,usuario1,seccion3);
             detalleSeccion3.save();
 
             DetalleExamen detalleExamen3 = new DetalleExamen(3,new Date(),0,usuario1,examen3);
@@ -304,12 +306,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             //estadisticas
             Date fecha= new Date();
 
-            Estadisticas estadisticas1=new Estadisticas(1,fecha.getMonth()+1,0,seccion1);
+            Estadisticas estadisticas1=new Estadisticas(1,fecha.getMonth()+1,0,seccion1,user);
             estadisticas1.save();
 
-            Estadisticas estadisticas2=new Estadisticas(2,fecha.getMonth()+1,0,seccion2);
+            Estadisticas estadisticas2=new Estadisticas(2,fecha.getMonth()+1,0,seccion2,user);
             estadisticas2.save();
-            Estadisticas estadisticas3=new Estadisticas(3,fecha.getMonth()+1,0,seccion3);
+            Estadisticas estadisticas3=new Estadisticas(3,fecha.getMonth()+1,0,seccion3,user);
             estadisticas3.save();
 
 
