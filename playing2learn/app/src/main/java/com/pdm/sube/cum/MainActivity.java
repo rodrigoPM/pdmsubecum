@@ -189,7 +189,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Examen examen1 = new Examen(1,"Examen Seccion 1","examen",seccion1);
             examen1.save();
 
-            DetalleSeccion detalleSeccion1 = new DetalleSeccion(1,true,0,false,usuario1,seccion1);
+            DetalleSeccion detalleSeccion1 = new DetalleSeccion(1,false,0,false,usuario1,seccion1);
             detalleSeccion1.save();
 
             DetalleExamen detalleExamen1 = new DetalleExamen(1,new Date(),0,usuario1,examen1);
@@ -200,7 +200,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             ejercicioExamen1.save();
             EjercicioExamen ejercicioExamen2 = new EjercicioExamen(2,false,examen1,ejercicio15);
             ejercicioExamen2.save();
-            EjercicioExamen ejercicioExamen3 = new EjercicioExamen(3,false,examen1,ejercicio26);
+            EjercicioExamen ejercicioExamen3 = new EjercicioExamen(3,false,examen1,ejercicio25);
             ejercicioExamen3.save();
 
 
@@ -251,7 +251,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Examen examen2 = new Examen(2,"Examen Seccion 2","examen",seccion2);
             examen2.save();
 
-            DetalleSeccion detalleSeccion2 = new DetalleSeccion(2,true,0,false,usuario1,seccion2);
+            DetalleSeccion detalleSeccion2 = new DetalleSeccion(2,false,0,false,usuario1,seccion2);
             detalleSeccion2.save();
 
             DetalleExamen detalleExamen2 = new DetalleExamen(2,new Date(),0,usuario1,examen2);
@@ -260,9 +260,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             EjercicioExamen ejercicioExamen4 = new EjercicioExamen(4,false,examen2,ejercicio37);
             ejercicioExamen4.save();
-            EjercicioExamen ejercicioExamen5 = new EjercicioExamen(5,false,examen2,ejercicio42);
+            EjercicioExamen ejercicioExamen5 = new EjercicioExamen(5,false,examen2,ejercicio41);
             ejercicioExamen5.save();
-            EjercicioExamen ejercicioExamen6 = new EjercicioExamen(6,false,examen2,ejercicio48);
+            EjercicioExamen ejercicioExamen6 = new EjercicioExamen(6,false,examen2,ejercicio47);
             ejercicioExamen6.save();
 
 
@@ -286,7 +286,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Examen examen3 = new Examen(3,"Examen Seccion 3","examen",seccion3);
             examen3.save();
 
-            DetalleSeccion detalleSeccion3 = new DetalleSeccion(3,true,0,false,usuario1,seccion3);
+            DetalleSeccion detalleSeccion3 = new DetalleSeccion(3,false,0,false,usuario1,seccion3);
             detalleSeccion3.save();
 
             DetalleExamen detalleExamen3 = new DetalleExamen(3,new Date(),0,usuario1,examen3);

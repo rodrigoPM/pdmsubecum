@@ -43,7 +43,6 @@ public class EjercicicioUno extends Fragment implements View.OnClickListener {
 
     Boolean leccion;
 
-
     public EjercicicioUno() {
         // Required empty public constructor
     }
@@ -106,11 +105,14 @@ public class EjercicicioUno extends Fragment implements View.OnClickListener {
                     if(respuesta.equals(ejercicio.getRespuesta())){
                         Toast.makeText(getActivity(),"Respuesta correcta",Toast.LENGTH_SHORT).show();
                         ((EjercicioContainer)getActivity()).mostrarBoton();
+                        ((EjercicioContainer)getActivity()).setEstado(true);
                     }else{
                         Toast.makeText(getActivity(),"Incorrecto",Toast.LENGTH_SHORT).show();
+                        ((EjercicioContainer)getActivity()).mostrarBoton();
                     }
                 }else{
-
+                    Toast.makeText(getActivity(),"No hay grabacion",Toast.LENGTH_SHORT).show();
+                    ((EjercicioContainer)getActivity()).mostrarBoton();
                 }
 
                 break;
@@ -131,7 +133,6 @@ public class EjercicicioUno extends Fragment implements View.OnClickListener {
                        texto_respuesta.setText(result.get(0));
                        respuesta = result.get(0);
                    }
-
 
                 }
                 break;

@@ -9,29 +9,45 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 
+import com.pdm.sube.cum.DB.models.DetalleExamen;
+import com.pdm.sube.cum.DB.models.DetalleExamen_Table;
+import com.pdm.sube.cum.DB.models.DetalleSeccion;
+import com.pdm.sube.cum.DB.models.DetalleSeccion_Table;
 import com.pdm.sube.cum.DB.models.Ejercicio;
 import com.pdm.sube.cum.DB.models.EjercicioExamen;
 import com.pdm.sube.cum.DB.models.EjercicioExamen_Table;
 import com.pdm.sube.cum.DB.models.Ejercicio_Table;
 import com.pdm.sube.cum.DB.models.Examen;
 import com.pdm.sube.cum.DB.models.Examen_Table;
+import com.pdm.sube.cum.DB.models.Leccion;
+import com.pdm.sube.cum.DB.models.Leccion_Table;
+import com.pdm.sube.cum.DB.models.Seccion;
+import com.pdm.sube.cum.DB.models.Seccion_Table;
 import com.pdm.sube.cum.R;
 import com.pdm.sube.cum.leccion.MenuLeccionActivity;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class EjercicioContainer extends AppCompatActivity  implements View.OnClickListener {
 
     boolean primero = true;
     List<Ejercicio> ejercicios;
+    List<EjercicioExamen> ejercicioExamenList;
     int contador;
     int len_ejercicios;
     FloatingActionButton fab;
     int id_leccion;
     int id_examen;
     boolean leccion;
+    boolean ejercicio_actual = true;
+    float nota;
+    int aprobadas = 0;
+    int reprobadas = 0;
+    int aproTemp = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +65,7 @@ public class EjercicioContainer extends AppCompatActivity  implements View.OnCli
         }
         else{
             id_examen = getIntent().getExtras().getInt("id_examen");
-            List<EjercicioExamen> ejercicioExamenList = SQLite.select().from(EjercicioExamen.class)
+            ejercicioExamenList = SQLite.select().from(EjercicioExamen.class)
                     .where(EjercicioExamen_Table.examen_id.eq(id_examen)).queryList();
             ejercicios = new ArrayList<>();
             for(EjercicioExamen ejercicioExamen: ejercicioExamenList){
@@ -78,7 +94,21 @@ public class EjercicioContainer extends AppCompatActivity  implements View.OnCli
     public Ejercicio getEjercicio(){
         Ejercicio ejercicioTemp = ejercicios.get(contador);
         contador++;
+        consolidarEstadoEjercicio();
         return ejercicioTemp;
+    }
+    public void consolidarEstadoEjercicio(){
+        if(contador > 1){
+            if(aproTemp >0){
+                aprobadas++;
+                if(!getTipo()){
+                    ejercicioExamenList.get(contador-1).setEstado_ejercicio(true);
+                }
+            }else{
+                reprobadas++;
+            }
+            aproTemp = 0;
+        }
     }
 
     public void mostrarBoton(){
@@ -104,6 +134,7 @@ public class EjercicioContainer extends AppCompatActivity  implements View.OnCli
                     }
                     primero = !primero;
                 }else{
+                    consolidarEstadoEjercicio();
                     f = new Completado();
                 }
                 ocultarBoton();
@@ -111,15 +142,54 @@ public class EjercicioContainer extends AppCompatActivity  implements View.OnCli
                         .beginTransaction()
                         .replace(R.id.contenedorEjercicios, f)
                         .commit();
-
                 break;
+        }
+    }
+    public void setEstado(Boolean estadoEjercicio){
+        if(estadoEjercicio){
+            aproTemp++;
         }
     }
 
     public void salir(){
-        startActivity(new Intent(this, MenuLeccionActivity.class));
+        DetalleExamen detalleExamen = SQLite.select().from(DetalleExamen.class).where(DetalleExamen_Table.examen_id.eq(id_examen)).querySingle();
+        detalleExamen.setNota(nota);
+        detalleExamen.setFecha(new Date());
+        detalleExamen.update();
+
+        Seccion seccion = SQLite.select().from(Seccion.class).where(Seccion_Table.id.eq(id_examen)).querySingle();
+        Leccion leccion = SQLite.select().from(Leccion.class).where(Leccion_Table.id.eq(id_leccion)).querySingle();
+        DetalleSeccion detalleSeccion = SQLite.select().from(DetalleSeccion.class).where(DetalleSeccion_Table.seccion_id.eq(seccion.getId())).querySingle();
+        if(!getTipo()){
+            if(nota > 7.0){
+                detalleSeccion.setEstado_examen(true);
+                detalleSeccion.setEstado_seccion(true);
+            }
+        }else{
+            if(nota > 7.0){
+                leccion.setEstado(true);
+                leccion.update();
+                detalleSeccion.setLecciones_aprobadas(detalleSeccion.getLecciones_aprobadas() + 1);
+            }
+        }
+        detalleSeccion.update();
+
+        finish();
     }
     public boolean getTipo(){return leccion;}
+
+    public int totalEjercicios(){
+        return len_ejercicios;
+    }
+    public int getAprobadas(){
+        return aprobadas;
+    }
+    public int getReprobadas(){
+        return reprobadas;
+    }
+    public float getNota(){
+        return aprobadas/len_ejercicios*10;
+    }
 
 
 }
