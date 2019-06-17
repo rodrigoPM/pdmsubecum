@@ -12,11 +12,16 @@ import android.widget.Toast;
 
 import com.pdm.sube.cum.DB.models.DetalleExamen;
 import com.pdm.sube.cum.DB.models.DetalleSeccion;
+import com.pdm.sube.cum.DB.models.Examen;
+import com.pdm.sube.cum.DB.models.Examen_Table;
+import com.pdm.sube.cum.DB.models.Seccion;
+import com.pdm.sube.cum.DB.models.Seccion_Table;
 import com.pdm.sube.cum.DB.models.Usuario;
 import com.pdm.sube.cum.DB.models.Usuario_Table;
 import com.pdm.sube.cum.seccion.MenuActivity;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 
+import java.sql.SQLInput;
 import java.util.Date;
 
 public class Registro extends AppCompatActivity implements View.OnClickListener{
@@ -72,23 +77,32 @@ public class Registro extends AppCompatActivity implements View.OnClickListener{
                             user = SQLite.select().from(Usuario.class).where(Usuario_Table.usuario.eq(this.til_usuario.getEditText().getText().toString())).queryList().get(0);
                             examen.setUsuario(user);
                             examen.setFecha(new Date());
+                            examen.setNota(0);
+                            examen.setExamen(SQLite.select().from(Examen.class).where(Examen_Table.id.eq(1)).querySingle());
                             examen.save();
                             examen2.setUsuario(user);
                             examen2.setFecha(new Date());
+                            examen2.setNota(0);
+                            examen2.setExamen(SQLite.select().from(Examen.class).where(Examen_Table.id.eq(2)).querySingle());
                             examen2.save();
                             examen3.setUsuario(user);
                             examen3.setFecha(new Date());
+                            examen3.setNota(0);
+                            examen3.setExamen(SQLite.select().from(Examen.class).where(Examen_Table.id.eq(3)).querySingle());
                             examen3.save();
                             seccion.setUsuario(user);
+                            seccion.setSeccion(SQLite.select().from(Seccion.class).where(Seccion_Table.id.eq(1)).querySingle());
                             seccion2.setUsuario(user);
+                            seccion2.setSeccion(SQLite.select().from(Seccion.class).where(Seccion_Table.id.eq(2)).querySingle());
                             seccion3.setUsuario(user);
+                            seccion3.setSeccion(SQLite.select().from(Seccion.class).where(Seccion_Table.id.eq(3)).querySingle());
                             seccion.save();
                             seccion2.save();
                             seccion3.save();
+
                             Toast.makeText(this,"usuario guardado", Toast.LENGTH_SHORT).show();
                             intent = new Intent(Registro.this, MainActivity.class);
                             startActivity(intent);
-
                         }
                         else{
                             Toast.makeText(this,"clave no es similar", Toast.LENGTH_SHORT).show();

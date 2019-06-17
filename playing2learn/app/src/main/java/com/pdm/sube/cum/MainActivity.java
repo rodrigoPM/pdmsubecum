@@ -2,10 +2,10 @@ package com.pdm.sube.cum;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,16 +30,19 @@ import butterknife.OnClick;
 
 //import com.raizlabs.android.dbflow.config.MyDBMyDB_Database;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity{
 
     Usuario user;
 
 
-    Button btnLogin;
-    EditText edt_usuario, edt_password;
-    //TextView txt_crear_cuenta;
     @BindView(R.id.txt_crear_cuenta)
     TextView txt_crear_cuenta;
+    @BindView(R.id.edt_usuario)
+    TextInputEditText edt_usuario;
+    @BindView(R.id.edt_password)
+    TextInputEditText edt_password;
+    @BindView(R.id.login_btn_login)
+    Button btnLogin;
 
 
     @Override
@@ -49,50 +52,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ButterKnife.bind(this);
         getSupportActionBar().hide();
 
-        this.edt_usuario = findViewById(R.id.edt_usuario);
-        this.edt_password = findViewById(R.id.edt_password);
-
-
-        this.btnLogin = findViewById(R.id.login_btn_login);
-        this.btnLogin.setOnClickListener(this);
-        //this.txt_crear_cuenta.setOnClickListener(this);
-
 
         quemarDatos();
     }
 
 
-    @Override
-    public void onClick(View v) {
-        Intent intent;
-
-        switch (v.getId()) {
-            case R.id.login_btn_login:
-
-                try {
-                    user = SQLite.select().from(Usuario.class).where(Usuario_Table.usuario.eq(this.edt_usuario.getText().toString())).queryList().get(0);
-                } catch (Exception e) {
-                    user = null;
-                }
-                if (user != null) {
-                    if (user.getPassword().equals(this.edt_password.getText().toString())) {
-                        intent = new Intent(MainActivity.this, MenuActivity.class);
-                        intent.putExtra("usuario", user.getId());
-                        startActivity(intent);
-                    } else {
-                        Toast.makeText(this, "Password incorrecto", Toast.LENGTH_SHORT).show();
-                    }
-                } else {
-
-                    Toast.makeText(this, "El Usuario no existe", Toast.LENGTH_SHORT).show();
-                }
-
-                break;
-            case R.id.txt_crear_cuenta:
-                //startActivity(new Intent(this, Registro.class));
-                break;
-        }
-    }
 
     public void quemarDatos() {
 
@@ -327,8 +291,32 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
-    @OnClick(R.id.txt_crear_cuenta)
-    public void onViewClicked() {
-        startActivity(new Intent(this, Registro.class));
+    @OnClick({R.id.login_btn_login, R.id.txt_crear_cuenta})
+    public void onViewClicked(View view) {
+        Intent intent;
+        switch (view.getId()) {
+            case R.id.login_btn_login:
+                try {
+                    user = SQLite.select().from(Usuario.class).where(Usuario_Table.usuario.eq(this.edt_usuario.getText().toString())).queryList().get(0);
+                } catch (Exception e) {
+                    user = null;
+                }
+                if (user != null) {
+                    if (user.getPassword().equals(this.edt_password.getText().toString())) {
+                        intent = new Intent(MainActivity.this, MenuActivity.class);
+                        intent.putExtra("usuario", user.getId());
+                        startActivity(intent);
+                    } else {
+                        Toast.makeText(this, "Password incorrecto", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+
+                    Toast.makeText(this, "El Usuario no existe", Toast.LENGTH_SHORT).show();
+                }
+                break;
+            case R.id.txt_crear_cuenta:
+                startActivity(new Intent(this, Registro.class));
+                break;
+        }
     }
 }
