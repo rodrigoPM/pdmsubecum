@@ -5,6 +5,7 @@ import com.pdm.sube.cum.DB.MyDB;
 import com.raizlabs.android.dbflow.annotation.Column;
 import com.raizlabs.android.dbflow.annotation.PrimaryKey;
 import com.raizlabs.android.dbflow.annotation.Table;
+import com.raizlabs.android.dbflow.annotation.Unique;
 import com.raizlabs.android.dbflow.structure.BaseModel;
 
 @Table(database = MyDB.class)
@@ -15,6 +16,7 @@ public class Usuario extends BaseModel {
     int id;
 
     @Column
+    @Unique
     String usuario;
 
     @Column

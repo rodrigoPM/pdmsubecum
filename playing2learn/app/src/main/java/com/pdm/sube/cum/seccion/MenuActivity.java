@@ -6,18 +6,27 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import com.pdm.sube.cum.DB.models.Seccion;
+import com.pdm.sube.cum.DB.models.Usuario;
+import com.pdm.sube.cum.DB.models.Usuario_Table;
 import com.pdm.sube.cum.R;
 import com.pdm.sube.cum.leccion.menuLeccionActivity;
 import com.pdm.sube.cum.seccion.SeccionFragment;
 import com.pdm.sube.cum.seccion.SeccionItem;
+import com.raizlabs.android.dbflow.sql.language.SQLite;
 
 
 public class MenuActivity extends AppCompatActivity implements SeccionFragment.OnListFragmentInteractionListener {
+    Usuario user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
+        try {
+            user = SQLite.select().from(Usuario.class).where(Usuario_Table.id.eq(getIntent().getExtras().getInt("usuario"))).queryList().get(0);
+        }catch (Exception e){
+            user = null;
+        }
     }
 
 
