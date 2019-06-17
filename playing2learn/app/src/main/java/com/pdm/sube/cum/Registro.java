@@ -25,10 +25,28 @@ import com.raizlabs.android.dbflow.sql.language.SQLite;
 import java.sql.SQLInput;
 import java.util.Date;
 
+import butterknife.BindView;
+
 public class Registro extends AppCompatActivity implements View.OnClickListener{
 
-    TextInputLayout til_usuario,til_password1,til_password2,til_correo;
+    @BindView(R.id.til_usuario)
+    TextInputLayout til_usuario;
+    @BindView(R.id.til_password1)
+    TextInputLayout til_password1;
+    @BindView(R.id.til_password2)
+    TextInputLayout til_password2;
+    @BindView(R.id.button2)
     Button button2;
+    @BindView(R.id.til_correo)
+    TextInputLayout til_correo;
+
+    public static String user_email = "dixonforeverandever@gmail.com";
+    public static String pass_email = "dixonforever1234";
+
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
