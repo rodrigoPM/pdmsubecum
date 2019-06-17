@@ -16,9 +16,7 @@ import com.pdm.sube.cum.DB.models.Usuario_Table;
 import com.pdm.sube.cum.DB.models.Seccion_Table;
 import com.pdm.sube.cum.R;
 import com.pdm.sube.cum.estadisticas.EstadisticasActivity;
-import com.pdm.sube.cum.leccion.menuLeccionActivity;
-import com.pdm.sube.cum.seccion.SeccionFragment;
-import com.pdm.sube.cum.seccion.SeccionItem;
+import com.pdm.sube.cum.leccion.MenuLeccionActivity;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 import java.util.Date;
 
@@ -43,7 +41,7 @@ public class MenuActivity extends AppCompatActivity implements SeccionFragment.O
     @Override
     public void onListFragmentInteraction(Seccion item) {
         Intent intent;
-        intent = new Intent(this,menuLeccionActivity.class);
+        intent = new Intent(this, MenuLeccionActivity.class);
         intent.putExtra("id", item.getId());
         Toast.makeText(this,"id: "+item.getId(),Toast.LENGTH_SHORT).show();
         startActivity(intent);

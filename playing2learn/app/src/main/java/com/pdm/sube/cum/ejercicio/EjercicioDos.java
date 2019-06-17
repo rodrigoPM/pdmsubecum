@@ -110,8 +110,13 @@ public class EjercicioDos extends Fragment implements View.OnClickListener {
             case 10:
                 if (resultCode == getActivity().RESULT_OK && data != null) {
                     ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-                    texto_respuesta.setText(result.get(0));
-                    respuesta = result.get(0);
+                    if(ejercicio.getId() == 3 || ejercicio.getId() == 14 && result.get(0) == "y"){
+                        texto_respuesta.setText("i");
+                        respuesta = "i";
+                    }else{
+                        texto_respuesta.setText(result.get(0));
+                        respuesta = result.get(0);
+                    }
                 }
                 break;
         }

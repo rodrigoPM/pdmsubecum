@@ -16,7 +16,7 @@
             android:label="@string/title_activity_ejercicio_container"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Registro" />
-        <activity android:name=".leccion.menuLeccionActivity" />
+        <activity android:name=".leccion.MenuLeccionActivity" />
         <activity android:name=".seccion.MenuActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>

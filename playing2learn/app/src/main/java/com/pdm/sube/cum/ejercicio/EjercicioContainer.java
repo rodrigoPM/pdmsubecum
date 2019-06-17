@@ -1,28 +1,26 @@
 package com.pdm.sube.cum.ejercicio;
 
-import android.animation.Animator;
 import android.content.Intent;
 import android.os.Bundle;
-import android.speech.RecognizerIntent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
-import android.view.animation.AnimationUtils;
-import android.view.animation.Interpolator;
 
 import com.pdm.sube.cum.DB.models.Ejercicio;
+import com.pdm.sube.cum.DB.models.EjercicioExamen;
+import com.pdm.sube.cum.DB.models.EjercicioExamen_Table;
 import com.pdm.sube.cum.DB.models.Ejercicio_Table;
+import com.pdm.sube.cum.DB.models.Examen;
+import com.pdm.sube.cum.DB.models.Examen_Table;
 import com.pdm.sube.cum.R;
-import com.pdm.sube.cum.leccion.menuLeccionActivity;
+import com.pdm.sube.cum.leccion.MenuLeccionActivity;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static android.webkit.ConsoleMessage.MessageLevel.LOG;
 
 public class EjercicioContainer extends AppCompatActivity  implements View.OnClickListener {
 
@@ -31,6 +29,9 @@ public class EjercicioContainer extends AppCompatActivity  implements View.OnCli
     int contador;
     int len_ejercicios;
     FloatingActionButton fab;
+    int id_leccion;
+    int id_examen;
+    boolean leccion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,9 +40,28 @@ public class EjercicioContainer extends AppCompatActivity  implements View.OnCli
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        ejercicios = SQLite.select().from(Ejercicio.class).where(Ejercicio_Table.leccion_id.is(getIntent().getExtras().getInt("id_leccion"))).queryList();
-        len_ejercicios = ejercicios.size();
-        Log.d("Tamano de lista","-> "+len_ejercicios);
+        if(getIntent().getExtras().getString("tipo").equals("leccion")){
+            id_leccion = getIntent().getExtras().getInt("id_leccion");
+            ejercicios = SQLite.select().from(Ejercicio.class).where(Ejercicio_Table.leccion_id.is(id_leccion)).queryList();
+            len_ejercicios = ejercicios.size();
+
+            leccion = true;
+        }
+        else{
+            id_examen = getIntent().getExtras().getInt("id_examen");
+            List<EjercicioExamen> ejercicioExamenList = SQLite.select().from(EjercicioExamen.class)
+                    .where(EjercicioExamen_Table.examen_id.eq(id_examen)).queryList();
+            ejercicios = new ArrayList<>();
+            for(EjercicioExamen ejercicioExamen: ejercicioExamenList){
+                ejercicios.add(SQLite.select().from(Ejercicio.class).where(Ejercicio_Table.id
+                        .eq(ejercicioExamen.getEjercicio().getId())).querySingle());
+            }
+
+            len_ejercicios = ejercicios.size();
+            leccion = false;
+        }
+
+        Log.d("total de ejercicio"," -> "+len_ejercicios);
         contador = 0;
 
         getSupportFragmentManager().beginTransaction().add(R.id.contenedorEjercicios,new EjercicicioUno())
@@ -62,41 +82,9 @@ public class EjercicioContainer extends AppCompatActivity  implements View.OnCli
     }
 
     public void mostrarBoton(){
-        final Interpolator interpolador = AnimationUtils.loadInterpolator(getBaseContext(),
-                android.R.interpolator.fast_out_slow_in);
-
         fab.animate()
                 .scaleX(1)
-                .scaleY(1)
-                .setInterpolator(interpolador)
-                .setDuration(600)
-                .setStartDelay(1000)
-                .setListener(new Animator.AnimatorListener() {
-                    @Override
-                    public void onAnimationStart(Animator animation) {
-
-                    }
-
-                    @Override
-                    public void onAnimationEnd(Animator animation) {
-                        /*fab.animate()
-                                .scaleY(0)
-                                .scaleX(0)
-                                .setInterpolator(interpolador)
-                                .setDuration(600)
-                                .start();*/
-                    }
-
-                    @Override
-                    public void onAnimationCancel(Animator animation) {
-
-                    }
-
-                    @Override
-                    public void onAnimationRepeat(Animator animation) {
-
-                    }
-                });
+                .scaleY(1);
     }
     public void ocultarBoton(){
         fab.setScaleX(0);
@@ -129,9 +117,9 @@ public class EjercicioContainer extends AppCompatActivity  implements View.OnCli
     }
 
     public void salir(){
-        startActivity(new Intent(this, menuLeccionActivity.class));
+        startActivity(new Intent(this, MenuLeccionActivity.class));
     }
-
+    public boolean getTipo(){return leccion;}
 
 
 }
