@@ -50,8 +50,9 @@ dependencies {
     implementation 'com.sun.mail:android-activation:1.6.2'
     implementation 'com.sun.mail:android-mail:1.6.2'
     implementation 'com.sun.mail:android-activation:1.6.2'
+    implementation project(path: ':opencsv-2.4')
     //implementation files('build/libs/activation.jar')
     //implementation files('build/libs/additionnal.jar')
     //implementation files('build/libs/mail.jar')
-    implementation files('build/libs/opencsv-2.4.jar')
+    //implementation files('build/libs/opencsv-2.4.jar')
 }
