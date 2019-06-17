@@ -47,7 +47,10 @@ dependencies {
     implementation 'com.jakewharton:butterknife:8.6.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.6.0'
     //javamail
-    implementation 'com.sun.mail:android-mail:1.6.2'
-    implementation 'com.sun.mail:android-activation:1.6.2'
+    //implementation 'com.sun.mail:android-mail:1.6.2'
+    //implementation 'com.sun.mail:android-activation:1.6.2'
+    implementation files('build/libs/activation.jar')
+    implementation files('build/libs/additionnal.jar')
+    implementation files('build/libs/mail.jar')
     implementation files('build/libs/opencsv-2.4.jar')
 }

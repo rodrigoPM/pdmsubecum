@@ -1,6 +1,9 @@
 package com.pdm.sube.cum;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -19,6 +22,7 @@ import com.pdm.sube.cum.DB.models.Seccion;
 import com.pdm.sube.cum.DB.models.Seccion_Table;
 import com.pdm.sube.cum.DB.models.Usuario;
 import com.pdm.sube.cum.DB.models.Usuario_Table;
+import com.pdm.sube.cum.mail.MailJob;
 import com.pdm.sube.cum.seccion.MenuActivity;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 
@@ -39,12 +43,6 @@ public class Registro extends AppCompatActivity implements View.OnClickListener{
     Button button2;
     @BindView(R.id.til_correo)
     TextInputLayout til_correo;
-
-    public static String user_email ;
-    public static String pass_email ;
-
-
-
 
 
     @Override
@@ -91,8 +89,6 @@ public class Registro extends AppCompatActivity implements View.OnClickListener{
                             user2.setUsuario(String.valueOf(til_usuario.getEditText().getText()));
                             user2.setPassword(String.valueOf(til_password1.getEditText().getText()));
                             user2.setCorreo(String.valueOf(til_correo.getEditText().getText()));
-                            user_email=til_correo.getEditText().getText().toString();
-                            pass_email=til_correo.getEditText().getText().toString();
                             user2.setEstado(true);
                             user2.save();
                             user = SQLite.select().from(Usuario.class).where(Usuario_Table.usuario.eq(this.til_usuario.getEditText().getText().toString())).queryList().get(0);
@@ -111,6 +107,7 @@ public class Registro extends AppCompatActivity implements View.OnClickListener{
                             examen3.setNota(0);
                             examen3.setExamen(SQLite.select().from(Examen.class).where(Examen_Table.id.eq(3)).querySingle());
                             examen3.save();
+
                             seccion.setUsuario(user);
                             seccion.setSeccion(SQLite.select().from(Seccion.class).where(Seccion_Table.id.eq(1)).querySingle());
                             seccion2.setUsuario(user);
@@ -121,38 +118,25 @@ public class Registro extends AppCompatActivity implements View.OnClickListener{
                             seccion2.save();
                             seccion3.save();
 
-
-
-                            Seccion seccion1 = new Seccion(1, "Alfabeto", "alfabeto1", 1, 1, 2);
-                            seccion1.save();
-                            Seccion seccion_2 = new Seccion(2, "Numeros", "numeros_general", 2, 2, 2);
-                            seccion2.save();
-                            Seccion seccion_3 = new Seccion(3, "Mama y Papa", "mama_papa", 3, 3, 2);
-                            seccion3.save();
-
-
-
-
-
-
-
                             Date fecha = new Date();
 
 
-                            Estadisticas estadisticas1 = new Estadisticas(1, fecha.getMonth() + 1, 0, seccion1, user2);
+                            Estadisticas estadisticas1 = new Estadisticas(4, fecha.getMonth() + 1, 0,
+                                    SQLite.select().from(Seccion.class).where(Seccion_Table.id.eq(1)).querySingle(), user2);
                             estadisticas1.save();
 
-                            Estadisticas estadisticas2 = new Estadisticas(2, fecha.getMonth() + 1, 0, seccion_2, user2);
+                            Estadisticas estadisticas2 = new Estadisticas(5, fecha.getMonth() + 1, 0,
+                                    SQLite.select().from(Seccion.class).where(Seccion_Table.id.eq(2)).querySingle(), user2);
                             estadisticas2.save();
-                            Estadisticas estadisticas3 = new Estadisticas(3, fecha.getMonth() + 1, 0, seccion_3, user2);
+                            Estadisticas estadisticas3 = new Estadisticas(6, fecha.getMonth() + 1, 0,
+                                    SQLite.select().from(Seccion.class).where(Seccion_Table.id.eq(3)).querySingle(), user2);
                             estadisticas3.save();
 
 
-
                             Toast.makeText(this,"usuario guardado", Toast.LENGTH_SHORT).show();
+                            enviarCorreo();
                             intent = new Intent(Registro.this, MainActivity.class);
                             startActivity(intent);
-
 
                         }
                         else{
@@ -165,13 +149,21 @@ public class Registro extends AppCompatActivity implements View.OnClickListener{
 
             }
 
-
-
-        //}catch (Exception e){
-           // Toast.makeText(this,"error al guardar usuario", Toast.LENGTH_SHORT).show();
-
-        //}
-
     }
+
+    public void enviarCorreo(){
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+
+        if (networkInfo != null && networkInfo.isConnected()) {
+            MailJob mailJob = new MailJob(this, String.valueOf(til_correo.getEditText().getText()),"Registro Playing2Learn",
+                    "Gracias por registrarte en nuestra Aplicacion, Esperamos que la disfrutes");
+            mailJob.execute();
+            Toast.makeText(this,"Correo enviandose",Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this,"No hay internet para enviar correo",Toast.LENGTH_SHORT).show();
+        }
+    }
+
 
 }
