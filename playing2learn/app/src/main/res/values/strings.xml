@@ -17,4 +17,5 @@
     <string name="registro_correo">Correo</string>
     <string name="finalizar">Finalizar</string>
     <string name="comprobar">Comprobar</string>
+    <string name="action_progreso">Progreso</string>
 </resources>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout tools:context=".seccion.AvanceSeccionActivity"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:id="@+id/LinearLayout1"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView
+        android:textAlignment="center"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:text="TABLA DE AVANCE"/>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent">
+
+        <Button
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/button1"
+            android:text="EXPORTAR A EXCEL"
+            android:onClick="exportarExcel"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:textAlignment="center"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:text="NIVELES APROBADOS"/>
+
+    <ListView
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:id="@+id/listView1"> </ListView>
+
+</LinearLayout>

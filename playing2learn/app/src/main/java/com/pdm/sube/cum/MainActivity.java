@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.pdm.sube.cum.DB.Constantes;
 import com.pdm.sube.cum.DB.models.DetalleExamen;
 import com.pdm.sube.cum.DB.models.DetalleSeccion;
 import com.pdm.sube.cum.DB.models.Ejercicio;
@@ -304,6 +305,8 @@ public class MainActivity extends AppCompatActivity{
                 if (user != null) {
                     if (user.getPassword().equals(this.edt_password.getText().toString())) {
                         intent = new Intent(MainActivity.this, MenuActivity.class);
+                        Constantes.ID = user.getId();
+                        Constantes.USUARIO = user.getUsuario();
                         intent.putExtra("usuario", user.getId());
                         startActivity(intent);
                     } else {

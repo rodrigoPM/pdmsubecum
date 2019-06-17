@@ -16,4 +16,5 @@
     <string name="registro_password_confirm">Confirm Password</string>
     <string name="finalizar">Finalize</string>
     <string name="comprobar">Check</string>
+    <string name="action_progreso">Progress</string>
 </resources>

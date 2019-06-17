@@ -63,6 +63,10 @@ public class MenuActivity extends AppCompatActivity implements SeccionFragment.O
                 intent.putExtra("usuario",user.getId());
                 startActivity(intent);
                 return true;
+            case R.id.action_progreso:
+                Intent intent2 = new Intent(this,AvanceSeccionActivity.class);
+                startActivity(intent2);
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
