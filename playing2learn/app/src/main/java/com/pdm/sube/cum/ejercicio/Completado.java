@@ -63,7 +63,7 @@ public class Completado extends Fragment implements View.OnClickListener {
             mp.start();
         }
         txt_aprobados.setText("Ejercicios Aprobados: "+((EjercicioContainer)getActivity()).getAprobadas());
-        txt_reprobados.setText("Ejercicios Aprobados: "+((EjercicioContainer)getActivity()).getReprobadas());
+        txt_reprobados.setText("Ejercicios Reprobados: "+((EjercicioContainer)getActivity()).getReprobadas());
 
 
         btn_fin.setOnClickListener(this);
