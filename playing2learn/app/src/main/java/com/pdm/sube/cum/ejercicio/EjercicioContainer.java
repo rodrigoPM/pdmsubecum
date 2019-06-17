@@ -6,6 +6,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.transition.Explode;
 import android.util.Log;
 import android.view.View;
 
@@ -80,7 +81,9 @@ public class EjercicioContainer extends AppCompatActivity  implements View.OnCli
         Log.d("total de ejercicio"," -> "+len_ejercicios);
         contador = 0;
 
-        getSupportFragmentManager().beginTransaction().add(R.id.contenedorEjercicios,new EjercicicioUno())
+        getSupportFragmentManager().beginTransaction()
+                .setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.fade_in)
+                .add(R.id.contenedorEjercicios,new EjercicicioUno())
                 .commit();
 
         fab = findViewById(R.id.fab);
@@ -140,6 +143,7 @@ public class EjercicioContainer extends AppCompatActivity  implements View.OnCli
                 ocultarBoton();
                 getSupportFragmentManager()
                         .beginTransaction()
+                        .setCustomAnimations(android.R.anim.fade_out, android.R.anim.fade_in)
                         .replace(R.id.contenedorEjercicios, f)
                         .commit();
                 break;
