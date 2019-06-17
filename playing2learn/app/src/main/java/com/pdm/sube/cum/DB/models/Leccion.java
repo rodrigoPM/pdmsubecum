@@ -12,7 +12,7 @@ import com.raizlabs.android.dbflow.structure.BaseModel;
 public class Leccion extends BaseModel {
 
     @Column
-    @PrimaryKey
+    @PrimaryKey(autoincrement = true)
     int id;
 
     @Column

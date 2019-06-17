@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void quemarDatos(){
 
-        if(SQLite.select().from(Seccion.class).count() == 0 ){
+        //if(SQLite.select().from(Seccion.class).count() == 0 ){
             Usuario usuario1 = new Usuario(1,"admin","admin", "admin@admin.com",true);
             usuario1.save();
 
@@ -178,47 +178,47 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
             //ejercicio numeros 0-9
-            Ejercicio ejercicio33 = new Ejercicio(33, R.drawable.numero_1,R.raw.numero_0,"cero",leccion3);
+            Ejercicio ejercicio33 = new Ejercicio(33, R.drawable.numero_0,R.raw.numero_0,"0",leccion3);
             ejercicio33.save();
-            Ejercicio ejercicio34 = new Ejercicio(34, R.drawable.numero_1,R.raw.numero_1,"uno",leccion3);
+            Ejercicio ejercicio34 = new Ejercicio(34, R.drawable.numero_1,R.raw.numero_1,"1",leccion3);
             ejercicio34.save();
-            Ejercicio ejercicio35 = new Ejercicio(35, R.drawable.numero_2,R.raw.numero_2,"dos",leccion3);
+            Ejercicio ejercicio35 = new Ejercicio(35, R.drawable.numero_2,R.raw.numero_2,"2",leccion3);
             ejercicio35.save();
-            Ejercicio ejercicio36 = new Ejercicio(36, R.drawable.numero_3,R.raw.numero_3,"tres",leccion3);
+            Ejercicio ejercicio36 = new Ejercicio(36, R.drawable.numero_3,R.raw.numero_3,"3",leccion3);
             ejercicio36.save();
-            Ejercicio ejercicio37 = new Ejercicio(37, R.drawable.numero_4,R.raw.numero_4,"cuatro",leccion3);
+            Ejercicio ejercicio37 = new Ejercicio(37, R.drawable.numero_4,R.raw.numero_4,"4",leccion3);
             ejercicio37.save();
-            Ejercicio ejercicio38 = new Ejercicio(38, R.drawable.numero_5,R.raw.numero_5,"cinco",leccion3);
+            Ejercicio ejercicio38 = new Ejercicio(38, R.drawable.numero_5,R.raw.numero_5,"5",leccion3);
             ejercicio38.save();
-            Ejercicio ejercicio39 = new Ejercicio(39, R.drawable.numero_6,R.raw.numero_6,"seis",leccion3);
+            Ejercicio ejercicio39 = new Ejercicio(39, R.drawable.numero_6,R.raw.numero_6,"6",leccion3);
             ejercicio39.save();
-            Ejercicio ejercicio40 = new Ejercicio(40, R.drawable.numero_7,R.raw.numero_7,"siete",leccion3);
+            Ejercicio ejercicio40 = new Ejercicio(40, R.drawable.numero_7,R.raw.numero_7,"7",leccion3);
             ejercicio40.save();
-            Ejercicio ejercicio41 = new Ejercicio(41, R.drawable.numero_8,R.raw.numero_8,"ocho",leccion3);
+            Ejercicio ejercicio41 = new Ejercicio(41, R.drawable.numero_8,R.raw.numero_8,"8",leccion3);
             ejercicio41.save();
-            Ejercicio ejercicio42 = new Ejercicio(42, R.drawable.numero_9,R.raw.numero_9,"nueve",leccion3);
+            Ejercicio ejercicio42 = new Ejercicio(42, R.drawable.numero_9,R.raw.numero_9,"9",leccion3);
             ejercicio42.save();
 
             //ejercicio decenas
-            Ejercicio ejercicio43 = new Ejercicio(43, R.drawable.numero_10_decena,R.raw.numero_10,"diez",leccion4);
+            Ejercicio ejercicio43 = new Ejercicio(43, R.drawable.numero_10_decena,R.raw.numero_10,"10",leccion4);
             ejercicio43.save();
-            Ejercicio ejercicio44 = new Ejercicio(44, R.drawable.numero_20,R.raw.numero_20,"veinte",leccion4);
+            Ejercicio ejercicio44 = new Ejercicio(44, R.drawable.numero_20,R.raw.numero_20,"20",leccion4);
             ejercicio44.save();
-            Ejercicio ejercicio45 = new Ejercicio(45, R.drawable.numero_30,R.raw.numero_30,"treinta",leccion4);
+            Ejercicio ejercicio45 = new Ejercicio(45, R.drawable.numero_30,R.raw.numero_30,"30",leccion4);
             ejercicio45.save();
-            Ejercicio ejercicio46 = new Ejercicio(46, R.drawable.numero_40,R.raw.numero_40,"cuarenta",leccion4);
+            Ejercicio ejercicio46 = new Ejercicio(46, R.drawable.numero_40,R.raw.numero_40,"40",leccion4);
             ejercicio46.save();
-            Ejercicio ejercicio47 = new Ejercicio(47, R.drawable.numero_50,R.raw.numero_50,"cincuenta",leccion4);
+            Ejercicio ejercicio47 = new Ejercicio(47, R.drawable.numero_50,R.raw.numero_50,"50",leccion4);
             ejercicio47.save();
-            Ejercicio ejercicio48 = new Ejercicio(48, R.drawable.numero_60,R.raw.numero_60,"sesenta",leccion4);
+            Ejercicio ejercicio48 = new Ejercicio(48, R.drawable.numero_60,R.raw.numero_60,"60",leccion4);
             ejercicio48.save();
-            Ejercicio ejercicio49 = new Ejercicio(49, R.drawable.numero_70,R.raw.numero_70,"setenta",leccion4);
+            Ejercicio ejercicio49 = new Ejercicio(49, R.drawable.numero_70,R.raw.numero_70,"70",leccion4);
             ejercicio49.save();
-            Ejercicio ejercicio50 = new Ejercicio(50, R.drawable.numero_80,R.raw.numero_80,"ochenta",leccion4);
+            Ejercicio ejercicio50 = new Ejercicio(50, R.drawable.numero_80,R.raw.numero_80,"80",leccion4);
             ejercicio50.save();
-            Ejercicio ejercicio51 = new Ejercicio(51, R.drawable.numero_90,R.raw.numero_90,"noventa",leccion4);
+            Ejercicio ejercicio51 = new Ejercicio(51, R.drawable.numero_90,R.raw.numero_90,"90",leccion4);
             ejercicio51.save();
-            Ejercicio ejercicio52 = new Ejercicio(52, R.drawable.numero_100,R.raw.numero_100,"cien",leccion4);
+            Ejercicio ejercicio52 = new Ejercicio(52, R.drawable.numero_100,R.raw.numero_100,"100",leccion4);
             ejercicio52.save();
 
             Examen examen2 = new Examen(2,"Examen Seccion 2",R.drawable.examen,seccion2);
@@ -240,10 +240,42 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
             //ejercicio de la seccion 3
+            //mama
+            Ejercicio ejercicio53 = new Ejercicio(53, R.drawable.mama,R.raw.mama,"mi mamá me mima",leccion5);
+            ejercicio53.save();
+            Ejercicio ejercicio54 = new Ejercicio(54, R.drawable.mama,R.raw.mama2,"amo a mi mamá",leccion5);
+            ejercicio54.save();
+            Ejercicio ejercicio55 = new Ejercicio(55, R.drawable.mama,R.raw.mama3,"memo ama a su mamá",leccion5);
+            ejercicio55.save();
+
+            //papa
+            Ejercicio ejercicio56 = new Ejercicio(56, R.drawable.papa,R.raw.papa,"papá me ama",leccion6);
+            ejercicio56.save();
+            Ejercicio ejercicio57 = new Ejercicio(57, R.drawable.papa,R.raw.papa2,"pepe ama a papá",leccion6);
+            ejercicio57.save();
+            Ejercicio ejercicio58 = new Ejercicio(58, R.drawable.papa,R.raw.papa3,"mi papá es bueno",leccion6);
+            ejercicio58.save();
+
+            Examen examen3 = new Examen(3,"Examen Seccion 3",R.drawable.examen,seccion3);
+            examen3.save();
+
+            DetalleSeccion detalleSeccion3 = new DetalleSeccion(3,true,0,false,usuario1,seccion3);
+            detalleSeccion3.save();
+
+            DetalleExamen detalleExamen3 = new DetalleExamen(3,new Date(),0,usuario1,examen3);
+            detalleExamen3.save();
 
 
-        }else{
-         Toast.makeText(this,"Base de datos llena", Toast.LENGTH_SHORT).show();
-        }
+            EjercicioExamen ejercicioExamen7 = new EjercicioExamen(7,false,examen3,ejercicio54);
+            ejercicioExamen7.save();
+            EjercicioExamen ejercicioExamen8 = new EjercicioExamen(8,false,examen3,ejercicio55);
+            ejercicioExamen8.save();
+            EjercicioExamen ejercicioExamen9 = new EjercicioExamen(9,false,examen3,ejercicio57);
+            ejercicioExamen9.save();
+
+
+        //}else{
+       // Toast.makeText(this,"Base de datos llena", Toast.LENGTH_SHORT).show();
+        //}
     }
 }

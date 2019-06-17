@@ -11,7 +11,7 @@ import com.raizlabs.android.dbflow.structure.BaseModel;
 @Table(database = MyDB.class)
 public class Examen extends BaseModel {
     @Column
-    @PrimaryKey
+    @PrimaryKey(autoincrement = true)
     int id;
 
     @Column

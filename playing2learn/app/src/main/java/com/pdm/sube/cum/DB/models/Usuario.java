@@ -10,7 +10,8 @@ import com.raizlabs.android.dbflow.structure.BaseModel;
 @Table(database = MyDB.class)
 public class Usuario extends BaseModel {
 
-    @PrimaryKey
+    @Column
+    @PrimaryKey(autoincrement = true)
     int id;
 
     @Column
