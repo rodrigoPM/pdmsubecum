@@ -55,6 +55,7 @@ public class Registro extends AppCompatActivity implements View.OnClickListener{
         this.til_correo = findViewById(R.id.til_correo);
         this.button2 = findViewById(R.id.button2);
         this.button2.setOnClickListener(this);
+        //enviarCorreo();
     }
 
     @Override
@@ -121,14 +122,17 @@ public class Registro extends AppCompatActivity implements View.OnClickListener{
                             Date fecha = new Date();
 
 
-                            Estadisticas estadisticas1 = new Estadisticas(4, fecha.getMonth() + 1, 0,
+                            Estadisticas estadisticas1 = new Estadisticas(SQLite.select().from(Estadisticas.class).queryList().size() +1,
+                                    fecha.getMonth() + 1, 0,
                                     SQLite.select().from(Seccion.class).where(Seccion_Table.id.eq(1)).querySingle(), user2);
                             estadisticas1.save();
 
-                            Estadisticas estadisticas2 = new Estadisticas(5, fecha.getMonth() + 1, 0,
+                            Estadisticas estadisticas2 = new Estadisticas(SQLite.select().from(Estadisticas.class).queryList().size() +1,
+                                    fecha.getMonth() + 1, 0,
                                     SQLite.select().from(Seccion.class).where(Seccion_Table.id.eq(2)).querySingle(), user2);
                             estadisticas2.save();
-                            Estadisticas estadisticas3 = new Estadisticas(6, fecha.getMonth() + 1, 0,
+                            Estadisticas estadisticas3 = new Estadisticas(SQLite.select().from(Estadisticas.class).queryList().size() +1
+                                    ,fecha.getMonth() + 1, 0,
                                     SQLite.select().from(Seccion.class).where(Seccion_Table.id.eq(3)).querySingle(), user2);
                             estadisticas3.save();
 
