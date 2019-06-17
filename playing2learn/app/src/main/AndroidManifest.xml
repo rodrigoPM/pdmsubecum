@@ -10,10 +10,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".estadisticas.EstadisticasActivity"></activity>
         <activity
             android:name=".ejercicio.EjercicioContainer"
             android:label="@string/title_activity_ejercicio_container"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Registro" />
         <activity android:name=".leccion.menuLeccionActivity" />
         <activity android:name=".seccion.MenuActivity" />
